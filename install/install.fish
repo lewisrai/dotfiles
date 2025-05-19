@@ -10,7 +10,7 @@ read
 
 pacman -Syu
 pacman -Rsn plymouth cachyos-plymouth-theme
-pacman -S asusctl hyprland librewolf nvim yay
+pacman -S asusctl hyprland librewolf nvim yay --needed
 cp ../nvidia/blacklist-nouveau.conf /etc/modprobe.d
 cp ../nvidia/00-remove-nvidia.rules /etc/udev/rules.d
 
