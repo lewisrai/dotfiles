@@ -15,3 +15,5 @@ cp ../nvidia/blacklist-nouveau.conf /etc/modprobe.d
 cp ../nvidia/00-remove-nvidia.rules /etc/udev/rules.d
 
 yay -Syu
+
+mkinitcpio -P
