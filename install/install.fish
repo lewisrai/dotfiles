@@ -5,14 +5,13 @@ if not fish_is_root_user
 	exit
 end
 
-cp ../nvidia/blacklist-nouveau.conf /etc/modprobe.d
-cp ../nvidia/00-remove-nvidia.rules /etc/udev/rules.d
-
-echo Remove plymouth from /etc/mkinitcpio.conf!
+echo Remove plymouth from /etc/mkinitcpio.conf
 read
 
 pacman -Syu
-pacman -Rsn plymouth cachyos-plymouth-theme
-pacman -S asusctl hyprland librewolf nvim uwsm yay --needed
+pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
+pacman -S asusctl hyprland lazygit librewolf nvim rog-control-center supergfxctl yay --needed --noconfirm
+
+systemctl enable --now supergfxd
 
 yay -Syu
