@@ -7,5 +7,6 @@
   "menus.clock.weather.enabled": false,
   "menus.clock.time.hideSeconds": true,
   "menus.clock.time.military": true,
-  "bar.clock.format": "%a %b %d  %H:%M"
+  "bar.clock.format": "%a %b %d  %H:%M",
+  "bar.workspaces.monitorSpecific": false
 }
