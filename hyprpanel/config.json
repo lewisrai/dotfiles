@@ -3,5 +3,9 @@
   "theme.bar.buttons.enableBorders": true,
   "menus.dashboard.directories.enabled": false,
   "menus.dashboard.stats.enabled": false,
-  "menus.dashboard.powermenu.confirmation": false
+  "menus.dashboard.powermenu.confirmation": false,
+  "menus.clock.weather.enabled": false,
+  "menus.clock.time.hideSeconds": true,
+  "menus.clock.time.military": true,
+  "bar.clock.format": "%a %b %d  %H:%M"
 }
