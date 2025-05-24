@@ -14,7 +14,7 @@ read
 
 limine-mkinitcpio
 
-pacman -S asusctl brightnessctl hyprland hyprpaper lazygit librewolf nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm yay yazi --needed --noconfirm
+pacman -S asusctl brightnessctl hyprland hyprpaper lazygit libreoffice-fresh librewolf nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm yay yazi --needed --noconfirm
 
 yay --aur -Sy
 
