@@ -1,0 +1,7 @@
+{
+  "theme.bar.transparent": true,
+  "theme.bar.buttons.enableBorders": true,
+  "menus.dashboard.directories.enabled": false,
+  "menus.dashboard.stats.enabled": false,
+  "menus.dashboard.powermenu.confirmation": false
+}
