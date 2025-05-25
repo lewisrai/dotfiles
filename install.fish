@@ -16,7 +16,7 @@ pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
 
 limine-mkinitcpio
 
-pacman -S asusctl brightnessctl hyprland hyprpaper lazygit libreoffice-fresh librewolf ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yay yazi --needed --noconfirm
+pacman -S asusctl brightnessctl hyperidle hyprland hyprlock hyprpaper lazygit libreoffice-fresh librewolf ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yay yazi --needed --noconfirm
 
 yay --aur -Sy
 
@@ -25,6 +25,7 @@ asusctl aura static -c ff00ff
 asusctl aura-power keyboard -a
 
 systemctl enable --now supergfxd
+systemctl --user enable --now hypridle.service
 
 powerprofilesctl configure-battery-aware --disable
 powerprofilesctl set power-saver

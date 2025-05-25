@@ -4,5 +4,6 @@
 /libreoffice
 /ncspot/userstate.cbor
 /pulse
+/systemd
 user-dirs.dirs
 user-dirs.locale
