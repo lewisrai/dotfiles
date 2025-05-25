@@ -52,7 +52,6 @@ vim.keymap.set("n", "<leader>d", function()
     vim.diagnostic.config({ virtual_lines = { current_line = true } })
 end)
 
-vim.keymap.set("n", "<leader>t", "<cmd>terminal<CR>")
 vim.keymap.set("n", "<leader>l", "<cmd>terminal lazygit<CR>")
 
 function Change_CWD(path)
@@ -95,7 +94,6 @@ vim.api.nvim_exec2("autocmd TermClose * bd!", {})
 vim.api.nvim_exec2("autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no", {})
 vim.api.nvim_exec2("autocmd TermOpen * startinsert", {})
 vim.api.nvim_exec2("autocmd TextYankPost * lua vim.highlight.on_yank()", {})
-vim.api.nvim_exec2("autocmd VimEnter * lua Change_CWD(\"~\")", {})
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -237,10 +235,10 @@ require("lazy").setup({
             end,
         },
         {
-            "folke/tokyonight.nvim",
+            "catppuccin/nvim",
             priority = 1000,
             config = function()
-                vim.cmd.colorscheme("tokyonight-night")
+                vim.cmd.colorscheme("catppuccin-mocha")
             end,
         },
         {
@@ -274,7 +272,7 @@ require("lazy").setup({
         },
     },
     rocks = { enabled = false },
-    install = { colorscheme = { "tokyonight-night" } },
+    install = { colorscheme = { "cat" } },
     ui = {
         custom_keys = {
             ["<localleader>l"] = false,

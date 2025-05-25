@@ -12,9 +12,11 @@ echo Remove plymouth from /etc/mkinitcpio.conf
 echo Edit kernel cmdline in /etc/default/limine, add rcutree.enable_rcu_lazy=1, add ipv6.disable=1
 read
 
+pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
+
 limine-mkinitcpio
 
-pacman -S asusctl brightnessctl hyprland hyprpaper lazygit libreoffice-fresh librewolf ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm yay yazi --needed --noconfirm
+pacman -S asusctl brightnessctl hyprland hyprpaper lazygit libreoffice-fresh librewolf ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yay yazi --needed --noconfirm
 
 yay --aur -Sy
 
