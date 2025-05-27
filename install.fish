@@ -16,12 +16,12 @@ pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
 
 limine-mkinitcpio
 
-pacman -S asusctl brightnessctl hyperidle hyprland hyprlock hyprpaper lazygit libreoffice-fresh librewolf ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yay yazi --needed --noconfirm
+pacman -S asusctl brightnessctl hyperidle hyprland hyprlock hyprpaper lazygit libreoffice-fresh librewolf mpv ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yazi --needed --noconfirm
 
-yay --aur -Sy
+paru -Syua
 
 asusctl -c 80
-asusctl aura static -c ff00ff
+asusctl aura static -c b4befe
 asusctl aura-power keyboard -a
 
 systemctl enable --now supergfxd
@@ -38,7 +38,7 @@ echo Configure git config --global user.name/email
 echo Configure supergfxd at /etc/supergfxd.conf
 read
 
-yay --aur -S ags-hyprpanel-git --needed --noconfirm
-yat --aur -S rose-pine-hyprcursor --needed --noconfirm
+paru -Sa ags-hyprpanel-git --needed --noconfirm
+paru -Sa rose-pine-hyprcursor --needed --noconfirm
 
 systemctl reboot

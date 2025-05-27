@@ -1,12 +1,31 @@
 {
-  "theme.bar.transparent": true,
-  "theme.bar.buttons.enableBorders": true,
-  "menus.clock.weather.enabled": false,
+  "bar.clock.format": "%a %b %d  %H:%M",
+  "bar.layouts": {
+    "0": {
+      "left": [
+        "power",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "volume",
+        "network",
+        "bluetooth",
+        "battery",
+        "systray",
+        "clock",
+        "notifications"
+      ]
+    }
+  },
+  "bar.workspaces.monitorSpecific": false,
   "menus.clock.time.hideSeconds": true,
   "menus.clock.time.military": true,
-  "bar.clock.format": "%a %b %d  %H:%M",
-  "bar.workspaces.monitorSpecific": false,
-  "menus.dashboard.powermenu.confirmation": false,
-  "menus.dashboard.stats.enabled": false,
-  "menus.dashboard.directories.enabled": false
+  "menus.clock.weather.enabled": false,
+  "menus.power.confirmation": false,
+  "theme.bar.buttons.enableBorders": true,
+  "theme.bar.transparent": true
 }

@@ -122,13 +122,20 @@ require("lazy").setup({
             opts = { signature = { enabled = true } },
         },
         {
+            "catppuccin/nvim",
+            priority = 1000,
+            config = function()
+                vim.cmd.colorscheme("catppuccin-mocha")
+            end,
+        },
+        {
             "lewis6991/gitsigns.nvim",
             opts = {},
         },
         {
             "nvim-lualine/lualine.nvim",
             dependencies = { "nvim-tree/nvim-web-devicons" },
-            opts = { options = { theme = "tokyonight-night" } },
+            opts = { options = { theme = "catppuccin-mocha" } },
         },
         {
             "williamboman/mason.nvim",
@@ -235,13 +242,6 @@ require("lazy").setup({
             end,
         },
         {
-            "catppuccin/nvim",
-            priority = 1000,
-            config = function()
-                vim.cmd.colorscheme("catppuccin-mocha")
-            end,
-        },
-        {
             "nvim-treesitter/nvim-treesitter",
             build = ":TSUpdate",
             config = function()
@@ -272,7 +272,7 @@ require("lazy").setup({
         },
     },
     rocks = { enabled = false },
-    install = { colorscheme = { "cat" } },
+    install = { colorscheme = { "catppuccin-mocha" } },
     ui = {
         custom_keys = {
             ["<localleader>l"] = false,
