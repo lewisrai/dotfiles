@@ -12,11 +12,13 @@ echo Remove plymouth from /etc/mkinitcpio.conf
 echo Edit kernel cmdline in /etc/default/limine, add rcutree.enable_rcu_lazy=1, add ipv6.disable=1
 read
 
+touch /etc/systemd/zram-generator.conf
+
 pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
 
 limine-mkinitcpio
 
-pacman -S asusctl brightnessctl hyperidle hyprland hyprlock hyprpaper lazygit libreoffice-fresh librewolf mpv ncspot nvim proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm xdg-desktop-portal-hyprland yazi --needed --noconfirm
+pacman -S asusctl brightnessctl discord hyperidle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm vpl-gpu-rt v4l2loopback-dkms xdg-desktop-portal-hyprland yazi --needed --noconfirm
 
 paru -Syua
 
@@ -38,7 +40,6 @@ echo Configure git config --global user.name/email
 echo Configure supergfxd at /etc/supergfxd.conf
 read
 
-paru -Sa ags-hyprpanel-git --needed --noconfirm
-paru -Sa rose-pine-hyprcursor --needed --noconfirm
+paru -Sa ags-hyprpanel-git hyprshot rose-pine-hyprcursor --needed --noconfirm
 
 systemctl reboot

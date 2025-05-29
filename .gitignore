@@ -1,8 +1,10 @@
 /btop
+/discord
 /dconf
 /fish/fish_variables
 /libreoffice
 /ncspot/userstate.cbor
+/obs-studio
 /pulse
 /systemd
 user-dirs.dirs
