@@ -14,8 +14,6 @@ read
 
 touch /etc/systemd/zram-generator.conf
 
-pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
-
 limine-mkinitcpio
 
 pacman -S asusctl brightnessctl discord hyperidle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm vpl-gpu-rt v4l2loopback-dkms xdg-desktop-portal-hyprland yazi --needed --noconfirm
