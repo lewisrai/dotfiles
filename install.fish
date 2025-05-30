@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 if fish_is_root_user
-	echo Do not run this script as root!
+	echo "Do not run this script as root!"
 	exit
 end
 
@@ -18,7 +18,7 @@ sudo pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
 
 sudo limine-mkinitcpio
 
-sudo pacman -S asusctl brightnessctl discord hypridle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm vpl-gpu-rt v4l2loopback-dkms xdg-desktop-portal-hyprland yazi --needed --noconfirm
+sudo pacman -S asusctl brightnessctl discord hypridle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio otf-firamono-nerd proton-vpn-gtk-app rofi-wayland supergfxctl swww uwsm vpl-gpu-rt v4l2loopback-dkms xdg-desktop-portal-hyprland yazi --needed --noconfirm
 
 asusctl -c 80
 asusctl aura static -c b4befe
@@ -33,6 +33,6 @@ powerprofilesctl set power-saver
 paru -Syua
 paru -Sa ags-hyprpanel-git hyprshot rose-pine-hyprcursor --needed --noconfirm
 
-echo Configure supergfxd at /etc/supergfxd.conf
-echo After reboot, configure discord, git config --global user.email/name, librewolf, obs-studio
+echo "Configure supergfxd at /etc/supergfxd.conf"
+echo "After reboot, configure discord, git config --global user.email/name, librewolf, obs-studio"
 read
