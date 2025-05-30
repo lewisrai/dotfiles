@@ -18,7 +18,7 @@ sudo pacman -Rsn plymouth cachyos-plymouth-theme --noconfirm
 
 sudo limine-mkinitcpio
 
-sudo pacman -S asusctl brightnessctl discord hypridle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio otf-firamono-nerd proton-vpn-gtk-app rofi-wayland supergfxctl uwsm vpl-gpu-rt v4l2loopback-dkms waybar xdg-desktop-portal-hyprland yazi --needed --noconfirm
+sudo pacman -S asusctl brightnessctl discord dunst hypridle hyprland hyprlock hyprpaper imv lazygit libreoffice-fresh librewolf mpv ncspot nvim obs-studio otf-firamono-nerd proton-vpn-gtk-app rofi-wayland supergfxctl uwsm vpl-gpu-rt v4l2loopback-dkms waybar xdg-desktop-portal-hyprland yazi --needed --noconfirm
 
 paru -Syua
 paru -Sa hyprshot rose-pine-hyprcursor --needed --noconfirm

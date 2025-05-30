@@ -5,7 +5,7 @@ lock=''
 suspend=''
 logout='󰍃'
 reboot=''
-shutdown='⏻'
+shutdown='󰐥'
 
 rofi_cmd() {
     rofi -dmenu -theme ~/.config/rofi/powermenu.rasi
