@@ -3,7 +3,6 @@
   "bar.layouts": {
     "0": {
       "left": [
-        "power",
         "workspaces",
         "windowtitle"
       ],
@@ -27,5 +26,8 @@
   "menus.clock.weather.enabled": false,
   "menus.power.confirmation": false,
   "theme.bar.buttons.enableBorders": true,
-  "theme.bar.transparent": true
+  "theme.bar.transparent": true,
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }
