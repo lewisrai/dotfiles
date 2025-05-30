@@ -2,7 +2,7 @@
 
 * {
     width:            25%;
-    font:             "FiraMono Nerd Font 20";
+    font:             "FiraMono Nerd Font 16";
 }
 
 window {

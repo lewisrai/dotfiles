@@ -2,6 +2,8 @@
 
 configuration {
     show-icons:       false;
+    kb-element-prev: "h"; 
+    kb-element-next: "l"; 
 }
 
 window {
