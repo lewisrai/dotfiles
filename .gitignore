@@ -1,10 +1,14 @@
 /discord
 /dconf
 /fish/fish_variables
+/gtk-3.0
+/gtk-4.0
 /libreoffice
 /ncspot/userstate.cbor
 /obs-studio
 /pulse
 /systemd
+/xsettingsd
+pavucontrol.ini
 user-dirs.dirs
 user-dirs.locale

@@ -1,9 +1,11 @@
 [global]
     width = (480, 480)
     height = (120, 120)
+    offset = (40, 40) 
     notification_limit = 5 
     gap_size = 10 
     font = "FiraMono Nerd Font 16" 
+    history_length = 0 
     corner_radius = 10 
 
 [rules]
@@ -11,3 +13,4 @@
     foreground = "#f5c2e7" 
     highlight = "#f5c2e7"
     frame_color = "#f5c2e7" 
+    timeout = 3 
