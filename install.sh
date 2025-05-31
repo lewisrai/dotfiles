@@ -23,6 +23,7 @@ packages=(
     "nwg-look"
     "obs-studio"
     "otf-firamono-nerd"
+    "powertop" 
     "proton-vpn-gtk-app"
     "rofi-wayland"
     "supergfxctl"
@@ -58,9 +59,13 @@ asusctl aura-power keyboard -a
 powerprofilesctl configure-battery-aware --disable
 powerprofilesctl set power-saver
 
+printf "[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
+
+sudo systemctl enable --now powertop.service
 sudo systemctl enable --now supergfxd
 sudo systemctl --user --global enable hypridle.service
 sudo systemctl --user --global enable hyprpolkitagent.service
+
 
 sudo sed -i -e "s/Hybrid/Integrated/" /etc/supergfxd.conf
 sudo sed -i -e "s/None/Asus/" /etc/supergfxd.conf

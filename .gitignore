@@ -1,4 +1,3 @@
-/balenaEtcher
 /discord
 /dconf
 /fish/fish_variables
@@ -8,7 +7,6 @@
 /ncspot/userstate.cbor
 /obs-studio
 /pulse
-/systemd
 /xsettingsd
 pavucontrol.ini
 user-dirs.dirs
