@@ -49,7 +49,7 @@ sudo limine-mkinitcpio
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
 paru -Syua
-paru -Sa hyprshot rose-pine-hyprcursor --needed --noconfirm
+paru -Sa catppuccin-gtk-theme-mocha hyprshot rose-pine-hyprcursor --needed --noconfirm
 
 asusctl -c 80
 asusctl aura static -c b4befe
@@ -62,6 +62,7 @@ sudo systemctl enable --now supergfxd
 sudo systemctl --user --global enable hypridle.service
 sudo systemctl --user --global enable hyprpolkitagent.service
 
-echo "Configure supergfxd at /etc/supergfxd.conf"
+sudo sed -i -e "s/Hybrid/Integrated/" /etc/supergfxd.conf
+sudo sed -i -e "s/None/Asus/" /etc/supergfxd.conf
+
 echo "After reboot, configure discord, git config --global user.email/name, gtk, librewolf, obs-studio"
-read

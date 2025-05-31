@@ -66,17 +66,20 @@
     "bluetooth": {
 		"tooltip": false,
         "format": "󰂯 {status}",
-        "format-off": "󰂲"
+        "format-off": "󰂲 {status}",
+        "format-disabled": "󰂲 {status}"
     }, 
     "backlight": {
 		"tooltip": false,
         "format": "{icon} {percent}%",
-        "format-icons": [""]
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
 	"pulseaudio": {
 		"tooltip": false,
-		"format": "{icon} {volume}%",
-		"format-muted": "muted",
+		"format": "{format_source} {icon} {volume}%",
+		"format-muted": "{format_source}  {volume}%",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭", 
 		"format-icons": {
 			"default": ["", "", ""]
 		}

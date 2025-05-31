@@ -19,13 +19,12 @@ window#waybar {
     padding-bottom: 0px; 
     padding-left: 10px; 
     padding-right: 10px; 
-    border-radius: 10px;
-    transition: none;
     background: #1e1e2e; 
     color: #f5c2e7; 
     border-bottom: 3px;
-    border-style: solid;
     border-color: #f5c2e7;
+    border-radius: 10px;
+    border-style: solid;
 }
 
 #workspaces {
@@ -34,4 +33,11 @@ window#waybar {
 
 #battery {
     margin-right: 40px; 
+}
+
+window#waybar.empty #window {
+    margin: 0px;
+    padding: 0px; 
+    background: transparent;
+    border: 0px; 
 }
