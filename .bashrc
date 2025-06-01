@@ -1,3 +1,4 @@
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+alias ls="eza -al --colour=auto --group-directories-first --icons"
+alias grep="grep --colour=auto"
+
+PS1="[\u@\h \W]\$ "
