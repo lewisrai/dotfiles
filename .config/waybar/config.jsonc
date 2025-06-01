@@ -61,13 +61,15 @@
 		"tooltip": false,
         "format": "{icon} {ifname}", 
         "format-disconnected": "󰤮",
-        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"]
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+        "on-click": "nm-connection-editor"
     },
     "bluetooth": {
 		"tooltip": false,
         "format": "󰂯 {status}",
         "format-off": "󰂲 {status}",
-        "format-disabled": "󰂲 {status}"
+        "format-disabled": "󰂲 {status}",
+        "on-click": "blueman-manager"
     }, 
     "backlight": {
 		"tooltip": false,
@@ -82,11 +84,13 @@
         "format-source-muted": "󰍭", 
 		"format-icons": {
 			"default": ["", "", ""]
-		}
+		},
+        "on-click": "pavucontrol"
 	},
     "battery": {
 		"tooltip": false,
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
+        "on-click": "powerprofilesctl set power-saver"
     }
 }

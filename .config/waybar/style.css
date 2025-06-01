@@ -19,7 +19,7 @@ window#waybar {
     padding-bottom: 0px; 
     padding-left: 10px; 
     padding-right: 10px; 
-    background: #1e1e2e; 
+    background: #1e1e2e;
     color: #f5c2e7; 
     border-bottom: 3px;
     border-color: #f5c2e7;
@@ -40,4 +40,28 @@ window#waybar.empty #window {
     padding: 0px; 
     background: transparent;
     border: 0px; 
+}
+
+#network:hover {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    transition: 0.3s;
+}
+
+#bluetooth:hover {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    transition: 0.3s;
+}
+
+#pulseaudio:hover {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    transition: 0.3s;
+}
+
+#battery:hover {
+    background: #f5c2e7;
+    color: #1e1e2e;
+    transition: 0.3s;
 }
