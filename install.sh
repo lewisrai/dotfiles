@@ -70,4 +70,6 @@ sudo systemctl --user --global enable hyprpolkitagent.service
 sudo sed -i -e "s/Hybrid/Integrated/" /etc/supergfxd.conf
 sudo sed -i -e "s/None/Asus/" /etc/supergfxd.conf
 
+chsh -s /usr/bin/bash
+
 echo "After reboot, configure discord, git config --global user.email/name, gtk, librewolf, obs-studio"
