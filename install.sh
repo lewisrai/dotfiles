@@ -71,7 +71,12 @@ sudo systemctl --user --global enable hyprpolkitagent.service
 sudo sed -i -e 's/Hybrid/Integrated/' /etc/supergfxd.conf
 sudo sed -i -e 's/None/Asus/' /etc/supergfxd.conf
 
-sudo sed -i -e 's/A password is required to access the ${cryptname} volume:/Password required for ${cryptname} volume:/' /usr/lib/initcpio/hooks/encrypt
+luks='s/                    echo "A password is required to access the ${cryptname} volume:"/'
+luks+='                    echo "Owner: '$1'"\n'
+luks+='                    echo ""\n'
+luks+='                    echo "Password required for ${cryptname} volume:"/'
+
+sudo sed -i -e "$luks" /usr/lib/initcpio/hooks/encrypt
 
 chsh -s /usr/bin/bash
 
