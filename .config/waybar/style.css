@@ -11,7 +11,7 @@ window#waybar {
 }
 
 #workspaces, #window, #tray, #clock, #privacy, #network, #bluetooth, #backlight, #pulseaudio, #battery {
-    margin-top: 5px; 
+    margin-top: 12px; 
     margin-bottom: 0px; 
     margin-left: 5px;
     margin-right: 5px; 
@@ -21,7 +21,7 @@ window#waybar {
     padding-right: 10px; 
     background: #1e1e2e;
     color: #f5c2e7; 
-    border-bottom: 3px;
+    border: 2px;
     border-color: #f5c2e7;
     border-radius: 10px;
     border-style: solid;
