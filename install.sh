@@ -26,11 +26,13 @@ packages=(
     'otf-firamono-nerd'
     'powertop'
     'proton-vpn-gtk-app'
+    'qemu-base' 
     'rofi-wayland'
     'supergfxctl'
     'uwsm'
-    'vpl-gpu-rt'
     'v4l2loopback-dkms'
+    'virt-manager' 
+    'vpl-gpu-rt'
     'waybar'
     'xdg-desktop-portal-hyprland'
     'yazi'
@@ -62,6 +64,7 @@ powerprofilesctl set power-saver
 
 printf '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target\n' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
 
+sudo systemctl enable --now libvirtd.socket
 sudo systemctl enable --now powertop.service
 sudo systemctl enable --now supergfxd
 sudo systemctl --user --global enable hypridle.service
