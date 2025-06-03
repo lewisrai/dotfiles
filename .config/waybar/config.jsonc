@@ -1,4 +1,4 @@
-
+{
 	"layer": "top",
 	"modules-left": ["hyprland/workspaces", "hyprland/window", "tray"],
 	"modules-center": ["clock"],
@@ -90,6 +90,6 @@
     "battery": {
 		"tooltip": false,
         "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": ["", "", "", "", ""]
     }
 }
