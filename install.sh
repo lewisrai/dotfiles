@@ -6,7 +6,6 @@ packages=(
     'asusctl'
     'blueman'
     'brightnessctl'
-    'discord'
     'dunst'
     'hypridle'
     'hyprland'
@@ -26,12 +25,11 @@ packages=(
     'otf-firamono-nerd'
     'powertop'
     'proton-vpn-gtk-app'
-    'qemu-base' 
     'rofi-wayland'
+    'steam' 
     'supergfxctl'
     'uwsm'
     'v4l2loopback-dkms'
-    'virt-manager' 
     'vpl-gpu-rt'
     'waybar'
     'xdg-desktop-portal-hyprland'
@@ -42,7 +40,7 @@ packages=(
 sudo pacman -Syu --needed --noconfirm
 
 sudo sed -i -e 's/plymouth //' /etc/mkinitcpio.conf
-sudo sed -i -e 's/quiet nowatchdog/quiet rcutree.enable_rcu_lazy=1 ipv6.disable=1 nowatchdog/' /etc/default/limine
+sudo sed -i -e 's/quiet nowatchdog/quiet ipv6.disable=1 rcutree.enable_rcu_lazy=1 split_lock_detect=off nowatchdog/' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
@@ -50,7 +48,7 @@ sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
 
 sudo limine-mkinitcpio
 
-sudo pacman -S "${packages[@]}" --needed --noconfirm
+sudo pacman -S ${packages[@]} --needed --noconfirm
 
 paru -Syua
 paru -Sa catppuccin-gtk-theme-mocha hyprshot rose-pine-hyprcursor --needed --noconfirm
@@ -62,9 +60,8 @@ asusctl aura-power keyboard -a
 powerprofilesctl configure-battery-aware --disable
 powerprofilesctl set power-saver
 
-printf '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target\n' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
+printf '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
 
-sudo systemctl enable --now libvirtd.socket
 sudo systemctl enable --now powertop.service
 sudo systemctl enable --now supergfxd
 sudo systemctl --user --global enable hypridle.service
@@ -79,10 +76,10 @@ luks+='                    echo "Owner: '$1'"\n'
 luks+='                    echo ""\n'
 luks+='                    echo "Password required for ${cryptname} volume:"/'
 
-sudo sed -i -e "$luks" /usr/lib/initcpio/hooks/encrypt
-
-chsh -s /usr/bin/bash
+sudo sed -i -e $luks /usr/lib/initcpio/hooks/encrypt
 
 rm -rf ~/.config/fish
 
-echo 'After reboot, configure discord, git config --global user.email/name, gtk, librewolf, obs-studio'
+chsh -s /usr/bin/bash
+
+echo 'After reboot, git config --global user.email/name, gtk, librewolf, obs-studio'
