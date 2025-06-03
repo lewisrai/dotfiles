@@ -59,9 +59,3 @@ window#waybar.empty #window {
     color: #1e1e2e;
     transition: 0.3s;
 }
-
-#battery:hover {
-    background: #f5c2e7;
-    color: #1e1e2e;
-    transition: 0.3s;
-}

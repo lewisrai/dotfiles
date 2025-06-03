@@ -1,4 +1,4 @@
-{
+
 	"layer": "top",
 	"modules-left": ["hyprland/workspaces", "hyprland/window", "tray"],
 	"modules-center": ["clock"],
@@ -91,6 +91,5 @@
 		"tooltip": false,
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
-        "on-click": "powerprofilesctl set power-saver"
     }
 }
