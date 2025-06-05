@@ -9,11 +9,10 @@
 /.config/gtk-3.0/
 /.config/gtk-4.0/
 /.config/libreoffice/
-/.config/ncspot/userspace.cbor
+/.config/ncspot/userstate.cbor
 /.config/obs-studio/
 /.config/pulse/
 /.config/xsettingsd/
-/.config/mimeapps.list
 /.config/pavucontrol.ini
 /.config/user-dirs.dirs
 /.config/user-dirs.locale
