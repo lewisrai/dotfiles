@@ -5,7 +5,7 @@ silent='󰠝 Silent'
 balanced='󱜝 Balanced'
 turbo='󱪂 Turbo'
 
-chosen="$(printf "$silent\n$balanced\n$turbo" | rofi -dmenu -theme ~/.config/rofi/menu.rasi)"
+chosen="$(echo -e "$silent\n$balanced\n$turbo" | rofi -dmenu -theme ~/.config/rofi/menu.rasi)"
 
 case ${chosen} in
     $silent) powerprofilesctl set power-saver;;

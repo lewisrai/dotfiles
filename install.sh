@@ -46,15 +46,13 @@ sudo touch /etc/systemd/zram-generator.conf
 sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
 
 luks='s/                    echo "A password is required to access the ${cryptname} volume:"/'
-luks+='                    echo "Owner: '$1'"\n'
-luks+='                    echo ""\n'
-luks+='                    echo "Password required for ${cryptname} volume:"/'
+luks+='                    echo -e "Owner: '$1'\\n\\nPassword required for ${cryptname} volume:"/'
 
-sudo sed -i -e $luks /usr/lib/initcpio/hooks/encrypt
+sudo sed -i -e "$luks" /usr/lib/initcpio/hooks/encrypt
 
 sudo limine-mkinitcpio
 
-sudo pacman -S ${packages[@]} --needed --noconfirm
+sudo pacman -S "${packages[@]}" --needed --noconfirm
 
 paru -Syua
 paru -Sa catppuccin-gtk-theme-mocha hyprshot rose-pine-hyprcursor --needed --noconfirm
@@ -66,7 +64,7 @@ asusctl aura-power keyboard -a
 powerprofilesctl configure-battery-aware --disable
 powerprofilesctl set power-saver
 
-printf '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
+echo -e '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
 
 sudo systemctl enable --now powertop.service supergfxd
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
