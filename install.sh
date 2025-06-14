@@ -7,6 +7,7 @@ packages=(
     'blueman'
     'brightnessctl'
     'dunst'
+    'gvfs' 
     'hypridle'
     'hyprland'
     'hyprlock'
@@ -26,13 +27,14 @@ packages=(
     'powertop'
     'proton-vpn-gtk-app'
     'rofi-wayland'
+    'sbctl' 
     'supergfxctl'
+    'thunar' 
     'uwsm'
     'v4l2loopback-dkms'
     'vpl-gpu-rt'
     'waybar'
     'xdg-desktop-portal-hyprland'
-    'yazi'
 )
 
 
@@ -45,8 +47,8 @@ sudo touch /etc/systemd/zram-generator.conf
 
 sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
 
-luks='s/                    echo "A password is required to access the ${cryptname} volume:"/'
-luks+='                    echo -e "Owner: '$1'\\n\\nPassword required for ${cryptname} volume:"/'
+luks='s/echo "A password is required to access the ${cryptname} volume:"/'
+luks+='echo -e "Owner: '$1'\\n\\nPassword required for ${cryptname} volume:"/'
 
 sudo sed -i -e "$luks" /usr/lib/initcpio/hooks/encrypt
 
@@ -66,11 +68,17 @@ powerprofilesctl set power-saver
 
 echo -e '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
 
+sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' /etc/supergfxd.conf
+
 sudo systemctl enable --now powertop.service supergfxd
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
 
-sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' /etc/supergfxd.conf
+sudo sbctl create-keys
+sudo sbctl enroll-keys -m
+sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+sudo limine-enroll-config
 
 rm -rf ~/.config/fish
+rm .bash_logout 
 
 chsh -s /usr/bin/bash

@@ -12,6 +12,8 @@
 /.config/ncspot/userstate.cbor
 /.config/obs-studio/
 /.config/pulse/
+/.config/Thunar/
+/.config/xfce4/
 /.config/xsettingsd/
 /.config/pavucontrol.ini
 /.config/user-dirs.dirs
