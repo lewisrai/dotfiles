@@ -47,11 +47,6 @@ sudo touch /etc/systemd/zram-generator.conf
 
 sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
 
-luks='s/echo "A password is required to access the ${cryptname} volume:"/'
-luks+='echo -e "Owner: '$1'\\n\\nPassword required for ${cryptname} volume:"/'
-
-sudo sed -i -e "$luks" /usr/lib/initcpio/hooks/encrypt
-
 sudo limine-mkinitcpio
 
 sudo pacman -S "${packages[@]}" --needed --noconfirm
