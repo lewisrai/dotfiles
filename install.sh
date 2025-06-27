@@ -8,6 +8,7 @@ packages=(
     'brightnessctl'
     'dunst'
     'gvfs' 
+    'hunspell-en_gb' 
     'hypridle'
     'hyprland'
     'hyprlock'
@@ -19,7 +20,7 @@ packages=(
     'librewolf'
     'mpv'
     'ncspot'
-    'nm-connection-editor'
+    'network-manager-applet'
     'nvim'
     'nwg-look'
     'obs-studio'
@@ -41,13 +42,11 @@ packages=(
 sudo pacman -Syu --needed --noconfirm
 
 sudo sed -i -e 's/plymouth //' /etc/mkinitcpio.conf
-sudo sed -i -e 's/quiet nowatchdog/quiet ipv6.disable=1 rcutree.enable_rcu_lazy=1 nowatchdog/' /etc/default/limine
+sudo sed -i -e 's/"quiet/"ipv6.disable=1 mitigations=off rcutree.enable_rcu_lazy=1 quiet/' -e 's/splash //' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
 sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
-
-sudo limine-mkinitcpio
 
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
@@ -63,6 +62,9 @@ powerprofilesctl set power-saver
 
 echo -e '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/powertop --auto-tune\n\n[Install]\nWantedBy=multi-user.target' | sudo tee -i /etc/systemd/system/powertop.service > /dev/null
 
+sudo rm /etc/xdg/autostart/blueman.desktop
+
+sudo sed -i -e 's/#AutoEnable=true/AutoEnable=false/' /etc/bluetooth/main.conf
 sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' /etc/supergfxd.conf
 
 sudo systemctl enable --now powertop.service supergfxd

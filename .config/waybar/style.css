@@ -1,9 +1,9 @@
 * {
-	border: none;
-	border-radius: 10px;
+    border: none;
+    border-radius: 6px;
     font-family: "FiraMono Nerd Font";
-	font-size: 16px;
-	min-height: 10px;
+    font-size: 16px;
+    min-height: 10px;
 }
 
 window#waybar {
@@ -40,12 +40,6 @@ window#waybar.empty #window {
     padding: 0px; 
     background: transparent;
     border: 0px; 
-}
-
-#network:hover {
-    background: #f5c2e7;
-    color: #1e1e2e;
-    transition: 0.3s;
 }
 
 #bluetooth:hover {
