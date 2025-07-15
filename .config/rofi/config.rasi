@@ -7,7 +7,7 @@
 
 window {
     border:           1px solid;
-    border-radius:    20px;
+    border-radius:    12px;
     padding:          10px 10px 10px 10px;
     font:             @font;
 }
@@ -18,7 +18,6 @@ inputbar {
 
 entry {
     placeholder:      "";
-    cursor-width:     11;
     blink:            false; 
 }
 
@@ -36,9 +35,10 @@ element alternate.normal {
 element selected.normal {
     background-color: @selected;
     text-color:       @background;
-    border-radius:    5px; 
+    border-radius:    6px;
 }
 
 element-text {
     highlight:        none;
+    padding:          2px;
 }

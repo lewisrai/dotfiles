@@ -9,14 +9,14 @@ configuration {
 window {
     width:            800px;
     border:           1px solid;
-    border-radius:    20px;
+    border-radius:    12px;
     border-color:     @selected;
     background-color: @background;
 }
 mainbox {
     spacing:          15px;
     padding:          30px;
-    border-radius:    20px;
+    border-radius:    12px;
     background-color: transparent;
     children:         [ "listview" ];
 }
@@ -28,7 +28,7 @@ listview {
 }
 element {
     padding:          40px 10px;
-    border-radius:    20px;
+    border-radius:    12px;
     border-color:     @selected;
     background-color: @background;
     text-color:       @foreground;

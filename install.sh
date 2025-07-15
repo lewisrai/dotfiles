@@ -42,7 +42,7 @@ packages=(
 sudo pacman -Syu --needed --noconfirm
 
 sudo sed -i -e 's/plymouth //' /etc/mkinitcpio.conf
-sudo sed -i -e 's/"quiet/"ipv6.disable=1 mitigations=off rcutree.enable_rcu_lazy=1 quiet/' -e 's/splash //' /etc/default/limine
+sudo sed -i -e 's/"quiet/"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet/' -e 's/splash //' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
@@ -65,7 +65,7 @@ echo -e '[Unit]\nDescription=Powertop tunings\n\n[Service]\nType=oneshot\nRemain
 sudo rm /etc/xdg/autostart/blueman.desktop
 
 sudo sed -i -e 's/#AutoEnable=true/AutoEnable=false/' /etc/bluetooth/main.conf
-sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' /etc/supergfxd.conf
+sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' -e 's/"always_reboot": false/"always_reboot": true/' /etc/supergfxd.conf
 
 sudo systemctl enable --now powertop.service supergfxd
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
