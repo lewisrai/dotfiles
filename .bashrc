@@ -1,5 +1,5 @@
-alias ls='eza -al --colour=auto --group-directories-first --icons'
-alias grep='grep --colour=auto'
+alias grep='grep --color=auto'
+alias ls='ls -A -l --color=auto --group-directories-first'
 
 alias snvim='sudo nvim --clean'
 alias update='sudo pacman -Syu'

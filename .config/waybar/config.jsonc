@@ -35,7 +35,8 @@
 	
     "clock": {
         "tooltip": false,
-        "format": "  {:%A - %B %d, %Y - %R}"
+        "locale": "ja_JP.UTF-8",
+        "format": "  {:L%Y年 %B %d日 (%a) - %R}"
     },
 
     "privacy": {

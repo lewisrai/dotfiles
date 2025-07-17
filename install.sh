@@ -75,7 +75,4 @@ sudo sbctl enroll-keys -m
 sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
 sudo limine-enroll-config
 
-rm -rf ~/.config/fish
 rm .bash_logout 
-
-chsh -s /usr/bin/bash

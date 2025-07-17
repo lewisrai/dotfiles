@@ -6,9 +6,13 @@
 !/install.sh
 
 /.config/dconf/
+/.config/fcitx/
+/.config/fcitx5/conf/
 /.config/gtk-3.0/
 /.config/gtk-4.0/
+/.config/ibus/
 /.config/libreoffice/
+/.config/mozc/
 /.config/ncspot/userstate.cbor
 /.config/obs-studio/
 /.config/pulse/
