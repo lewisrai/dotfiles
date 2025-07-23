@@ -23,7 +23,7 @@ TogglePreedit=
 ModifierOnlyKeyTimeout=250
 
 [Hotkey/EnumerateForwardKeys]
-0=Control+space
+0=Control+K
 
 [Hotkey/PrevPage]
 0=Up

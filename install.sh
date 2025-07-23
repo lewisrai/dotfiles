@@ -7,6 +7,8 @@ packages=(
     'blueman'
     'brightnessctl'
     'dunst'
+    'fcitx5-im'
+    'fcitx5-mozc'
     'gvfs' 
     'hunspell-en_gb' 
     'hypridle'
@@ -27,7 +29,7 @@ packages=(
     'otf-firamono-nerd'
     'powertop'
     'proton-vpn-gtk-app'
-    'rofi-wayland'
+    'rofi'
     'sbctl' 
     'supergfxctl'
     'thunar' 
@@ -38,6 +40,19 @@ packages=(
     'xdg-desktop-portal-hyprland'
 )
 
+
+mv .config/* ~/.config/
+mv .git/ ~/
+mv -f .bash_profile ~/
+mv -f .bashrc ~/
+mv .gitignore ~/
+
+rm .bash_logout
+
+mkdir -p ~/.local/share/fcitx5/themes/
+git clone https://github.com/catppuccin/fcitx5
+mv fcitx5/src/catppuccin-mocha-pink/ ~/.local/share/fcitx5/themes/
+rm -rf fcitx5/
 
 sudo pacman -Syu --needed --noconfirm
 
@@ -75,4 +90,5 @@ sudo sbctl enroll-keys -m
 sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
 sudo limine-enroll-config
 
-rm .bash_logout 
+mv install.sh ~/
+rm -rf ~/dotfiles/

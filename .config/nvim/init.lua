@@ -160,14 +160,6 @@ require("lazy").setup({
                 "williamboman/mason-lspconfig.nvim",
             },
             config = function()
-                vim.lsp.config("jdtls",
-                    {
-                        "jdtls",
-                        "-configuration",
-                        "C:/Users/Raiwin/AppData/Local/Temp/jdtls/config",
-                        "-data",
-                        "C:/Users/Raiwin/AppData/Local/Temp/jdtls/workspace",
-                    })
                 vim.lsp.config("lua_ls", {
                     settings = {
                         Lua = {
