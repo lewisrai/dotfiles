@@ -147,9 +147,7 @@ require("lazy").setup({
             opts = {
                 ensure_installed = {
                     "jdtls",
-                    "jedi_language_server",
                     "lua_ls",
-                    "ruff",
                 },
             },
         },

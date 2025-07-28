@@ -5,7 +5,7 @@ if [ -f reboot.sh ]; then
 fi
 
 if uwsm check may-start; then 
-    asusctl armoury panel_overdrive 0
-    powerprofilesctl set power-saver
-    exec uwsm start hyprland.desktop
+    asusctl armoury panel_overdrive 0 > /dev/null
+    powerprofilesctl set power-saver > /dev/null
+    exec uwsm start hyprland.desktop > /dev/null
 fi
