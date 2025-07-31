@@ -61,11 +61,11 @@ rm -rf fcitx5/
 sudo pacman -Syu --needed --noconfirm
 
 sudo sed -i -e 's/consolefont //' -e 's/plymouth //' /etc/mkinitcpio.conf
-sudo sed -i -e 's/"quiet/"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet/' -e 's/splash //' /etc/default/limine
+sudo sed -i -e 's/"quiet/"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5/' -e 's/splash //' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
-sudo pacman -Rsn plymouth cachyos-plymouth-bootanimation --noconfirm
+sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --noconfirm
 
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
@@ -76,7 +76,6 @@ asusctl -c 80
 asusctl aura static -c b4befe
 asusctl aura-power keyboard -a
 
-powerprofilesctl configure-battery-aware --disable
 powerprofilesctl set power-saver
 
 cat << 'EOF' | sudo tee -i /etc/systemd/system/powertop.service
