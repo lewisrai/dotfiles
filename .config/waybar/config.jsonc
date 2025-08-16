@@ -90,6 +90,14 @@
     "battery": {
 		"tooltip": false,
         "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "events": {
+            "on-discharging-warning": "notify-send 'Battery at 20%'",
+            "on-discharging-critical": "notify-send 'Battery at 10%'"
+        }
     }
 }

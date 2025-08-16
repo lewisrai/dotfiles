@@ -18,13 +18,14 @@ packages=(
     'hyprlock'
     'hyprpaper'
     'hyprpolkitagent'
+    'hyprshot'
     'imv'
     'jedi-language-server'
     'lazygit'
     'libreoffice-fresh'
     'librewolf'
+    'lutris'
     'mpv'
-    'ncspot'
     'network-manager-applet'
     'nvim'
     'nwg-look'
@@ -32,13 +33,13 @@ packages=(
     'otf-firamono-nerd'
     'powertop'
     'proton-vpn-gtk-app'
+    'rhythmbox'
     'rofi-wayland'
     'ruff'
     'sbctl' 
+    'steam'
     'supergfxctl'
     'thunar' 
-    'uwsm'
-    'v4l2loopback-dkms'
     'vpl-gpu-rt'
     'waybar'
     'xdg-desktop-portal-hyprland'
@@ -61,7 +62,7 @@ rm -rf fcitx5/
 sudo pacman -Syu --needed --noconfirm
 
 sudo sed -i -e 's/consolefont //' -e 's/plymouth //' /etc/mkinitcpio.conf
-sudo sed -i -e 's/"quiet/"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5/' -e 's/splash //' /etc/default/limine
+sudo sed -i -e 's/"quiet/"mem_sleep_default=deep ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5/' -e 's/splash //' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
@@ -70,13 +71,56 @@ sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --no
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
 paru -Syua
-paru -Sa catppuccin-gtk-theme-mocha hyprshot rose-pine-hyprcursor --needed --noconfirm
+paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha rose-pine-hyprcursor --needed
 
 asusctl -c 80
 asusctl aura static -c b4befe
 asusctl aura-power keyboard -a
 
-powerprofilesctl set power-saver
+cat << 'EOF' | sudo tee -i /etc/modprobe.d/alsa-base.conf
+options snd-hda-intel model=1043:1f11
+EOF
+
+cat << 'EOF' | sudo tee -i /etc/systemd/system/no-turbo.service
+[Unit]
+Description=No turbo boost
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat << 'EOF' | sudo tee -i /etc/systemd/system/panel-overdrive.service
+[Unit]
+Description=Disable panel overdrive
+After=asusd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/asusctl armoury panel_overdrive 0
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat << 'EOF' | sudo tee -i /etc/systemd/system/powersaver.service
+[Unit]
+Description=Powersaver
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/powerprofilesctl set power-saver
+
+[Install]
+WantedBy=multi-user.target
+EOF
 
 cat << 'EOF' | sudo tee -i /etc/systemd/system/powertop.service
 [Unit]
@@ -91,12 +135,10 @@ ExecStart=/usr/bin/powertop --auto-tune
 WantedBy=multi-user.target
 EOF
 
-sudo rm /etc/xdg/autostart/blueman.desktop
-
 sudo sed -i -e 's/#AutoEnable=true/AutoEnable=false/' /etc/bluetooth/main.conf
-sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' -e 's/"always_reboot": false/"always_reboot": true/' /etc/supergfxd.conf
+sudo sed -i -e 's/Hybrid/Integrated/' -e 's/None/Asus/' -e 's/reboot": false/reboot": true/' /etc/supergfxd.conf
 
-sudo systemctl enable --now powertop.service supergfxd
+sudo systemctl enable --now no-turbo.service panel-overdrive.service powersaver.service powertop.service supergfxd.service
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
 
 sudo sed -i -e '1s/^/term_foreground_bright: cdd6f4\n/' /boot/limine.conf

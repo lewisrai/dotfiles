@@ -4,8 +4,8 @@ if [ -f reboot.sh ]; then
     systemctl reboot
 fi
 
-if uwsm check may-start; then 
-    asusctl armoury panel_overdrive 0 > /dev/null
-    powerprofilesctl set power-saver > /dev/null
-    exec uwsm start hyprland.desktop > /dev/null
+sed -i -e 's/2560x1600@165/2560x1600@60/' ~/.config/hypr/hyprland.conf
+
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+    hyprland > /dev/null
 fi

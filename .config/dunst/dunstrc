@@ -1,6 +1,6 @@
 [global]
-    width = (320, 320)
-    height = (80, 80)
+    width = (480, 480)
+    height = (120, 120)
     offset = (40, 32)
     notification_limit = 5
     frame_width = 2
