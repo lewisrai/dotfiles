@@ -9,4 +9,4 @@ restart() {
     "$1" & disown
 }
 
-PS1='[\u@\h \W]\$ '
+PS1='\e[1;35m[\u@\h \W]\$\e[m '
