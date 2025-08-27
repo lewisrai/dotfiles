@@ -32,9 +32,12 @@ packages=(
     'obs-studio'
     'otf-firamono-nerd'
     'powertop'
+    'proton-cachyos'
     'proton-vpn-gtk-app'
+    'qbittorrent'
+    'qt6ct'
     'rhythmbox'
-    'rofi-wayland'
+    'rofi'
     'ruff'
     'sbctl' 
     'steam'
@@ -47,12 +50,9 @@ packages=(
 
 
 mv .config/* ~/.config/
-mv .git/ ~/
-mv -f .bash_profile ~/
-mv -f .bashrc ~/
-mv .gitignore ~/
+mv *. ~/
 
-rm .bash_logout
+rm -f .bash_logout
 
 mkdir -p /usr/local/share/kbd/keymaps/
 sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/local/share/kbd/keymaps/uk-custom.map.gz
@@ -60,7 +60,7 @@ sudo sed -i -e 's|Caps_Lock|Escape|' /usr/local/share/kbd/keymaps/uk-custom.map.
 sudo sed -i -e 's|uk|/usr/local/share/kbd/keymaps/uk-custom.map.gz|' /etc/vconsole.conf
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"mem_sleep_default=deep ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 video=2560x1600@60 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
+sudo sed -i -e 's|"quiet|"mem_sleep_default=deep ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
@@ -69,7 +69,7 @@ sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --no
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
 paru -Syua
-paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha rose-pine-hyprcursor --needed
+paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha catppuccin-qt5ct-git rose-pine-hyprcursor --needed
 
 asusctl -c 80
 asusctl aura static -c b4befe

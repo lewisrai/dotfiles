@@ -4,6 +4,8 @@ if [ -f reboot.sh ]; then
     systemctl reboot
 fi
 
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 sed -i -e 's/2560x1600@165/2560x1600@60/' ~/.config/hypr/hyprland.conf
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then

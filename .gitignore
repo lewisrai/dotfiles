@@ -18,6 +18,7 @@
 /.config/ncspot/userstate.cbor
 /.config/obs-studio/
 /.config/pulse/
+/.config/qBittorrent/
 /.config/Thunar/
 /.config/xfce4/
 /.config/xsettingsd/
