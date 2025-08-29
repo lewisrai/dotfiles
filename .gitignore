@@ -22,7 +22,6 @@
 /.config/Thunar/
 /.config/xfce4/
 /.config/xsettingsd/
-/.config/mimeapps.list
 /.config/pavucontrol.ini
 /.config/user-dirs.dirs
 /.config/user-dirs.locale
