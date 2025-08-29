@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-
-
 lock=''
 suspend=''
 logout='󰍃'
