@@ -1,5 +1,10 @@
+next_profile() {
+    powerprofilesctl set $1
+    notify-send -h string:x-dunst-stack-tag:powerprofile "Power Plan: $1"
+}
+
 case $(powerprofilesctl get) in
-    power-saver) powerprofilesctl set balanced && notify-send 'Power Plan set to Balanced';;
-    balanced) powerprofilesctl set performance && notify-send 'Power Plan set to Performance';;
-    performance) powerprofilesctl set power-saver && notify-send 'Power Plan set to Power-Saver';;
+    power-saver) next_profile "balanced";;
+    balanced) next_profile "performance";;
+    performance) next_profile "power-saver";;
 esac
