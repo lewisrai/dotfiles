@@ -1,5 +1,5 @@
 no='cancel'
-pid=pidof hyprland
+pid=$(pidof hyprland)
 
 if cat ~/.config/hypr/hyprland.conf | grep 'xwayland:enabled = true'; then
     yes='disable xwayland' 
@@ -8,6 +8,7 @@ if cat ~/.config/hypr/hyprland.conf | grep 'xwayland:enabled = true'; then
         hyprctl dispatch exit
         wait $pid
         sed -i -e 's|xwayland:enabled = true|xwayland:enabled = false|' ~/.config/hypr/hyprland.conf
+        hyprland
     fi
 else
     yes='enable xwayland' 
@@ -16,7 +17,6 @@ else
         hyprctl dispatch exit
         wait $pid
         sed -i -e 's|xwayland:enabled = false|xwayland:enabled = true|' ~/.config/hypr/hyprland.conf
+        hyprland
     fi 
 fi
-
-hyprland

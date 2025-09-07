@@ -60,7 +60,7 @@ sudo sed -i -e 's|Caps_Lock|Escape|' /usr/local/share/kbd/keymaps/uk-custom.map.
 sudo sed -i -e 's|uk|/usr/local/share/kbd/keymaps/uk-custom.map.gz|' /etc/vconsole.conf
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
+sudo sed -i -e 's|"quiet|"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
