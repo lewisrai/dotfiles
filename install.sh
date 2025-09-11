@@ -137,7 +137,7 @@ EOF
 sudo sed -i -e 's|#AutoEnable=true|AutoEnable=false|' /etc/bluetooth/main.conf
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
 
-sudo systemctl enable --now no-turbo.service panel-overdrive.service powersaver.service powertop.service supergfxd.service
+sudo systemctl enable no-turbo.service panel-overdrive.service powersaver.service powertop.service supergfxd.service
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
 
 cat << 'EOF' | sudo cat - /boot/limine.conf | sudo tee -i /boot/limine.conf
