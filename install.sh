@@ -24,6 +24,7 @@ packages=(
     'lazygit'
     'libreoffice-fresh'
     'librewolf'
+    'lua-language-server'
     'lutris'
     'mpv'
     'network-manager-applet'

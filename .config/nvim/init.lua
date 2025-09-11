@@ -147,7 +147,6 @@ require("lazy").setup({
             opts = {
                 ensure_installed = {
                     "jdtls",
-                    "lua_ls",
                 },
             },
         },
@@ -158,7 +157,7 @@ require("lazy").setup({
                 "williamboman/mason-lspconfig.nvim",
             },
             config = function()
-                vim.lsp.config("lua_ls", {
+                vim.lsp.config("luals", {
                     settings = {
                         Lua = {
                             runtime = {
@@ -178,6 +177,7 @@ require("lazy").setup({
                 vim.lsp.enable("clangd")
                 vim.lsp.enable("jdtls")
                 vim.lsp.enable("jedi_language_server")
+                vim.lsp.enable("luals")
                 vim.lsp.enable("ruff")
                 vim.lsp.enable("rust_analyzer")
             end,
