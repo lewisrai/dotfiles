@@ -60,14 +60,14 @@
     "network": {
 		"tooltip": false,
         "format": "{icon} {ifname}", 
-        "format-disconnected": "󰤮 ",
+        "format-disconnected": "󰤮 off",
         "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"]
     },
     "bluetooth": {
 		"tooltip": false,
         "format": "󰂯 {status}",
-        "format-off": "󰂲 {status}",
-        "format-disabled": "󰂲 {status}",
+        "format-off": "󰂲 off",
+        "format-disabled": "󰂲 off",
         "on-click": "blueman-manager"
     }, 
     "backlight": {

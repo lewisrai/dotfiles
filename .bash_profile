@@ -4,8 +4,6 @@ if [ -f reboot.sh ]; then
     systemctl reboot
 fi
 
-alias hyprland='pidof hyprland || hyprland'
-
 export PROTON_ENABLE_WAYLAND=1
 export PROTON_NO_STEAMINPUT=1
 export QT_QPA_PLATFORMTHEME=qt6ct

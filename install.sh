@@ -50,15 +50,25 @@ packages=(
 )
 
 
-mv .config/* ~/.config/
-mv *. ~/
+mv -f .config/* ~/.config/
+mv -f *. ~/
 
 rm -f .bash_logout
 
-mkdir -p /usr/local/share/kbd/keymaps/
+sudo mkdir -p /usr/local/share/kbd/keymaps/
 sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/local/share/kbd/keymaps/uk-custom.map.gz
 sudo sed -i -e 's|Caps_Lock|Escape|' /usr/local/share/kbd/keymaps/uk-custom.map.gz
 sudo sed -i -e 's|uk|/usr/local/share/kbd/keymaps/uk-custom.map.gz|' /etc/vconsole.conf
+
+cat << 'EOF' | sudo tee -i /boot/limine.conf
+term_palette: 1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
+term_palette_bright: 585b70;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
+term_background: 1e1e2e
+term_foreground: cdd6f4
+term_background_bright: 585b70
+term_foreground_bright: cdd6f4
+timeout: 3
+EOF
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
 sudo sed -i -e 's|"quiet|"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
@@ -136,18 +146,10 @@ EOF
 
 sudo sed -i -e 's|#AutoEnable=true|AutoEnable=false|' /etc/bluetooth/main.conf
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
+sudo sed -i -e 's|#DNS=|DNS=1.1.1.1 1.0.0.1|' /etc/systemd/resolved.conf
 
 sudo systemctl enable no-turbo.service panel-overdrive.service powersaver.service powertop.service supergfxd.service
 sudo systemctl --user --global enable hypridle.service hyprpolkitagent.service
-
-cat << 'EOF' | sudo cat - /boot/limine.conf | sudo tee -i /boot/limine.conf
-term_palette: 1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
-term_palette_bright: 585b70;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
-term_background: 1e1e2e
-term_foreground: cdd6f4
-term_background_bright: 585b70
-term_foreground_bright: cdd6f4
-EOF
 
 cat << 'EOF' | sudo tee -i /etc/issue
 \e]P01E1E2E\e]P2A6E3A1\e]PFCDD6F4\e[2J\e[H
@@ -188,8 +190,7 @@ cat << 'EOF' | sudo tee -i /etc/issue
 EOF
 
 sudo sbctl create-keys
-sudo sbctl enroll-keys -m
-sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
+sudo sbctl enroll-keys --microsoft
 sudo limine-enroll-config
 
 mv install.sh ~/
