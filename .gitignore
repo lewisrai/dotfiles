@@ -32,6 +32,16 @@
 !/.config/waybar/*
 !/.config/mimeapps.list
 
+!/.local/
+!/.local/share/
+!/.local/share/lutris/
+!/.local/share/lutris/lutris.conf
+!/.local/share/lutris/system.yml
+!/.local/share/lutris/runners/
+!/.local/share/lutris/runners/*
+!/.local/share/nwg-look/
+!/.local/share/nwg-look/*
+
 !/.bash_profile
 !/.bashrc
 !/.gitignore
