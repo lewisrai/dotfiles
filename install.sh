@@ -52,6 +52,7 @@ packages=(
 
 
 mv -f .config/* ~/.config/
+mv -f .local/share/* ~/.local/share/
 mv -f *. ~/
 
 rm -f .bash_logout
