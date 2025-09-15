@@ -1,3 +1,6 @@
 [Added Associations]
 image/png=imv.desktop;
 application/pdf=librewolf.desktop;
+
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop

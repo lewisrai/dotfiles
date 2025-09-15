@@ -2,6 +2,9 @@ alias grep='grep --color=auto'
 alias ls='ls -A -l --color=auto --group-directories-first'
 
 alias snvim='sudo nvim --clean'
+
+alias install='sudo pacman -S'
+alias remove='sudo pacman -Rsn'
 alias update='sudo pacman -Syu'
 
 restart() {

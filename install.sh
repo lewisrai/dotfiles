@@ -10,6 +10,7 @@ packages=(
     'dunst'
     'fcitx5-im'
     'fcitx5-mozc'
+    'gparted'
     'gimp'
     'gvfs' 
     'hunspell-en_gb' 
@@ -68,6 +69,7 @@ term_foreground: cdd6f4
 term_background_bright: 585b70
 term_foreground_bright: cdd6f4
 timeout: 3
+default_entry: 2
 EOF
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
@@ -80,7 +82,7 @@ sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --no
 sudo pacman -S "${packages[@]}" --needed --noconfirm
 
 paru -Syua
-paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha catppuccin-qt5ct-git rose-pine-hyprcursor --needed
+paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha catppuccin-qt5ct-git rose-pine-hyprcursor vesktop-bin --needed
 
 asusctl -c 80
 asusctl aura static -c b4befe
