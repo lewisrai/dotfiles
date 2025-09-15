@@ -2,7 +2,12 @@
 	"layer": "top",
 	"modules-left": ["hyprland/workspaces", "tray", "hyprland/window"],
 	"modules-center": ["clock"],
-	"modules-right": ["privacy", "network", "bluetooth", "backlight", "pulseaudio", "battery"],
+	"modules-right": ["privacy", "network", "bluetooth", "backlight", "pulseaudio", "group/power"],
+
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": ["power-profiles-daemon", "battery"]
+    },
 
     "hyprland/workspaces": {
         "tooltip": false,
@@ -86,6 +91,14 @@
 		},
         "on-click": "pavucontrol"
 	},
+    "power-profiles-daemon": {
+        "tooltip": false,
+        "format-icons": {
+            "power-saver": " ",
+            "balanced": " ",
+            "performance": "󱪂 "
+         }
+    },
     "battery": {
 		"tooltip": false,
         "format": "{icon} {capacity}%",

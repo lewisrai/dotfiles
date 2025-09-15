@@ -92,6 +92,10 @@ cat << 'EOF' | sudo tee -i /etc/modprobe.d/alsa-base.conf
 options snd-hda-intel model=1043:1f11
 EOF
 
+cat << 'EOF' | sudo tee -i /etc/sysctl.d/99-splitlock.conf
+kernel.split_lock_mitigate=0
+EOF
+
 cat << 'EOF' | sudo tee -i /etc/systemd/system/no-turbo.service
 [Unit]
 Description=No turbo boost

@@ -10,7 +10,7 @@ window#waybar {
 	background: transparent;
 }
 
-#workspaces, #window, #tray, #clock, #privacy, #network, #bluetooth, #backlight, #pulseaudio, #battery {
+#workspaces, #window, #tray, #clock, #privacy, #network, #bluetooth, #backlight, #pulseaudio, #power {
     margin-top: 12px; 
     margin-bottom: 0px; 
     margin-left: 5px;
@@ -31,7 +31,7 @@ window#waybar {
     margin-left: 40px;
 }
 
-#battery {
+#power {
     margin-right: 40px; 
 }
 
