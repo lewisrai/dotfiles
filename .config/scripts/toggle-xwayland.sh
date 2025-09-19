@@ -1,6 +1,5 @@
-no='cancel'
-
 if cat ~/.config/hypr/hyprland.conf | grep 'xwayland:enabled = true'; then
+    no='cancel'
     yes='disable xwayland' 
 
     if [ "$(echo -e "$no\n$yes" | rofi -dmenu -theme ~/.config/rofi/menu.rasi)" == "$yes" ]; then
@@ -15,6 +14,7 @@ if cat ~/.config/hypr/hyprland.conf | grep 'xwayland:enabled = true'; then
         hyprland > /dev/null
     fi
 else
+    no='cancel'
     yes='enable xwayland' 
 
     if [ "$(echo -e "$no\n$yes" | rofi -dmenu -theme ~/.config/rofi/menu.rasi)" == "$yes" ]; then
