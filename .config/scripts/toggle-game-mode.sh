@@ -1,11 +1,13 @@
 if cat ~/.config/hypr/hyprland.conf | grep 2560x1600@60; then
-    asusctl armoury panel_overdrive 1
     sed -i -e 's/2560x1600@60/2560x1600@165/' ~/.config/hypr/hyprland.conf
+    hyprctl reload
+    asusctl armoury panel_overdrive 1
     powerprofilesctl set performance
-    notify-send 'Game Mode: on'
+    notify-send -h string:x-dunst-stack-tag:gamemode "Game Mode: on"
 else
     sed -i -e 's/2560x1600@165/2560x1600@60/' ~/.config/hypr/hyprland.conf
+    hyprctl reload
     asusctl armoury panel_overdrive 0
     powerprofilesctl set power-saver
-    notify-send 'Game Mode: off'
+    notify-send -h string:x-dunst-stack-tag:gamemode "Game Mode: off"
 fi
