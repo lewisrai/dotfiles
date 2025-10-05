@@ -1,15 +1,11 @@
 @import "colours"
 
-* {
-    width:            25%;
-    font:             "FiraMono Nerd Font 16";
-}
-
 window {
+    width:            25%;
     border:           1px solid;
     border-radius:    12px;
     padding:          10px 10px 10px 10px;
-    font:             @font;
+    font:             "FiraMono Nerd Font 16";
 }
 
 inputbar {

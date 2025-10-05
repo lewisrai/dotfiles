@@ -32,6 +32,7 @@ packages=(
     'nvim'
     'nwg-look'
     'obs-studio'
+    'obsidian'
     'otf-firamono-nerd'
     'powertop'
     'proton-cachyos'
@@ -74,7 +75,7 @@ default_entry: 2
 EOF
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
+sudo sed -i -e 's|"quiet|"i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo touch /etc/systemd/zram-generator.conf
 
@@ -86,7 +87,7 @@ paru -Syua
 paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha catppuccin-qt5ct-git rose-pine-hyprcursor vesktop-bin --needed
 
 asusctl -c 80
-asusctl aura static -c b4befe
+asusctl aura static -c f5c2e7
 asusctl aura-power keyboard -a
 
 cat << 'EOF' | sudo tee -i /etc/modprobe.d/alsa-base.conf

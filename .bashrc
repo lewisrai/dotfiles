@@ -7,6 +7,13 @@ alias install='sudo pacman -S'
 alias remove='sudo pacman -Rsn'
 alias update='sudo pacman -Syu'
 
+export PATH="$PATH:~/Apps/matlab2024b/bin/"
+
+clean() {
+    rm -rf ~/.cache/*
+    rm -f ~/.bash_history
+}
+
 restart() {
     killall "$1"
     "$1" & disown

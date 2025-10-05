@@ -1,10 +1,15 @@
 [Added Associations]
 image/png=imv.desktop;
 application/pdf=librewolf.desktop;
-application/x-zerosize=nvim.desktop;
+application/x-zerosize=nvim.desktop;userapp-alacritty -e nvim-CSB1C3.desktop;
 text/plain=userapp-alacritty -e nvim-CSB1C3.desktop
+application/x-7z-compressed=userapp-7z x-291AD3.desktop;userapp-unzip-TA3SD3.desktop;
+text/x-java=userapp-alacritty -e nvim-CSB1C3.desktop;
+application/json=userapp-alacritty -e nvim-CSB1C3.desktop;
+image/jpeg=imv.desktop;
 
 [Default Applications]
 x-scheme-handler/discord=vesktop.desktop
-application/x-zerosize=nvim.desktop
+application/x-zerosize=userapp-alacritty -e nvim-CSB1C3.desktop
 text/plain=userapp-alacritty -e nvim-CSB1C3.desktop
+application/x-7z-compressed=userapp-unzip-TA3SD3.desktop
