@@ -75,9 +75,7 @@ default_entry: 2
 EOF
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 rcutree.enable_rcu_lazy=1 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
-
-sudo touch /etc/systemd/zram-generator.conf
+sudo sed -i -e 's|"quiet|"i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 systemd.zram=0 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --noconfirm
 
