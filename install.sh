@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-
-
 packages=(
     '7zip'
+    'acpica'
     'asusctl'
     'biome'
     'blueman'
@@ -21,10 +19,10 @@ packages=(
     'hyprpolkitagent'
     'hyprshot'
     'imv'
+    'intellij-idea-community-edition'
     'jedi-language-server'
     'lazygit'
     'libreoffice-fresh'
-    'librewolf'
     'lua-language-server'
     'lutris'
     'mpv'
@@ -51,6 +49,15 @@ packages=(
     'xdg-desktop-portal-hyprland'
 )
 
+aur=(
+    'catppuccin-fcitx5-git'
+    'catppuccin-gtk-theme-mocha'
+    'catppuccin-qt5ct-git'
+    'helium-browser-bin'
+    'neo4j-desktop'
+    'rose-pine-hyprcursor'
+    'vesktop-bin --needed'
+)
 
 mv -f .config/* ~/.config/
 mv -f .local/share/* ~/.local/share/
@@ -75,14 +82,13 @@ default_entry: 2
 EOF
 
 sudo sed -i -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 systemd.zram=0 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
+sudo sed -i -e 's|"quiet|"i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo pacman -Rsn cachyos-plymouth-bootanimation plymouth switcheroo-control --noconfirm
 
-sudo pacman -S "${packages[@]}" --needed --noconfirm
+sudo pacman -Syu "${packages[@]}" --needed --noconfirm
 
-paru -Syua
-paru -Sa catppuccin-fcitx5-git catppuccin-gtk-theme-mocha catppuccin-qt5ct-git rose-pine-hyprcursor vesktop-bin --needed
+paru -Syua "${aur[@]}" --needed
 
 asusctl -c 80
 asusctl aura static -c f5c2e7
@@ -90,10 +96,6 @@ asusctl aura-power keyboard -a
 
 cat << 'EOF' | sudo tee -i /etc/modprobe.d/alsa-base.conf
 options snd-hda-intel model=1043:1f11
-EOF
-
-cat << 'EOF' | sudo tee -i /etc/sysctl.d/99-splitlock.conf
-kernel.split_lock_mitigate=0
 EOF
 
 cat << 'EOF' | sudo tee -i /etc/systemd/system/no-turbo.service

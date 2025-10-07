@@ -33,7 +33,7 @@
     "hyprland/window": {
 		"tooltip": false,
         "rewrite": {
-            "(.*)LibreWolf": "LibreWolf",
+            "(.*)Helium": "Helium",
             "OBS(.*)": "OBS"
         }
     },
