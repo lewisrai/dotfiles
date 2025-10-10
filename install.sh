@@ -1,6 +1,5 @@
 packages=(
     '7zip'
-    'acpica'
     'asusctl'
     'biome'
     'blueman'
@@ -36,6 +35,7 @@ packages=(
     'proton-cachyos'
     'proton-vpn-gtk-app'
     'qbittorrent'
+    'qgis'
     'qt6ct'
     'rhythmbox'
     'rofi'
@@ -56,7 +56,7 @@ aur=(
     'helium-browser-bin'
     'neo4j-desktop'
     'rose-pine-hyprcursor'
-    'vesktop-bin --needed'
+    'vesktop-bin'
 )
 
 mv -f .config/* ~/.config/
