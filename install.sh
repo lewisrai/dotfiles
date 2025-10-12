@@ -41,6 +41,7 @@ packages=(
     'rofi'
     'ruff'
     'sbctl' 
+    'shotcut'
     'steam'
     'supergfxctl'
     'thunar' 

@@ -52,6 +52,7 @@ vim.keymap.set("n", "<leader>d", function()
     vim.diagnostic.config({ virtual_lines = { current_line = true } })
 end)
 
+vim.keymap.set("n", "<leader>t", "<cmd>terminal<CR>")
 vim.keymap.set("n", "<leader>l", "<cmd>terminal lazygit<CR>")
 
 function Change_CWD(path)
@@ -138,24 +139,8 @@ require("lazy").setup({
             opts = { options = { theme = "catppuccin-mocha" } },
         },
         {
-            "williamboman/mason.nvim",
-            opts = {},
-        },
-        {
-            "williamboman/mason-lspconfig.nvim",
-            dependencies = { "williamboman/mason.nvim" },
-            opts = {
-                ensure_installed = {
-                    "jdtls",
-                },
-            },
-        },
-        {
             "neovim/nvim-lspconfig",
-            dependencies = {
-                "saghen/blink.cmp",
-                "williamboman/mason-lspconfig.nvim",
-            },
+            dependencies = { "saghen/blink.cmp" },
             config = function()
                 vim.lsp.config("luals", {
                     settings = {
@@ -175,7 +160,6 @@ require("lazy").setup({
 
                 vim.lsp.enable("biome")
                 vim.lsp.enable("clangd")
-                vim.lsp.enable("jdtls")
                 vim.lsp.enable("jedi_language_server")
                 vim.lsp.enable("luals")
                 vim.lsp.enable("ruff")
@@ -242,7 +226,6 @@ require("lazy").setup({
                         "css",
                         "csv",
                         "html",
-                        "java",
                         "javascript",
                         "json",
                         "lua",
