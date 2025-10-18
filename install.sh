@@ -51,12 +51,12 @@ packages=(
 )
 
 aur=(
+    'catppuccin-cursors-mocha'
     'catppuccin-fcitx5-git'
     'catppuccin-gtk-theme-mocha'
     'catppuccin-qt5ct-git'
     'helium-browser-bin'
     'neo4j-desktop'
-    'rose-pine-hyprcursor'
     'vesktop-bin'
 )
 
