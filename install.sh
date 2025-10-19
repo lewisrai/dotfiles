@@ -71,6 +71,13 @@ sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/local/share/kbd/keymap
 sudo sed -i -e 's|Caps_Lock|Escape|' /usr/local/share/kbd/keymaps/uk-custom.map.gz
 sudo sed -i -e 's|uk|/usr/local/share/kbd/keymaps/uk-custom.map.gz|' /etc/vconsole.conf
 
+sudo sed -i -e 's|#Storage=auto|Storage=none|' /etc/systemd/journald.conf
+sudo journalctl --rotate
+sudo journalctl --vacuum-time=1s
+sudo systemctl restart systemd-journald
+rm -R /run/log/journal/*
+sudo rm -R /var/log/journal/*
+
 cat << 'EOF' | sudo tee -i /boot/limine.conf
 term_palette: 1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
 term_palette_bright: 585b70;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
