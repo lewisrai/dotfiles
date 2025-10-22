@@ -21,11 +21,16 @@ case $(echo -e "$xwayland\n$vrr\n$igpu\n$dgpu" | rofi -dmenu -theme ~/.config/ro
             hyprctl reload
         fi;;
     $igpu)
-        supergfxctl -m Hybrid
-        touch ~/igpu
+        notify-send 'Mux: setting iGPU...'
+        touch ~/reboot
+        supergfxctl -m Integrated
+        sleep 15
         notify-send 'Mux: iGPU';;
     $dgpu)
+        notify-send 'Mux: setting dGPU...'
         supergfxctl -m Hybrid
+        sleep 15
         supergfxctl -m AsusMuxDgpu
+        sleep 15
         notify-send 'Mux: dGPU';;
 esac

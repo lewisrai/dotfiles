@@ -1,6 +1,5 @@
-if [ -f igpu ]; then
-    supergfxctl -m Integrated
-    rm -f igpu
+if [ -f reboot ]; then
+    rm -f reboot && systemctl reboot
 fi
 
 export HISTSIZE=100
