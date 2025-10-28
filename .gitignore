@@ -20,8 +20,6 @@
 !/.config/nvim/*
 !/.config/nwg-look/
 !/.config/nwg-look/*
-!/.config/qt6ct/
-!/.config/qt6ct/*
 !/.config/rofi/
 !/.config/rofi/*
 !/.config/scripts/

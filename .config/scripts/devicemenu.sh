@@ -22,7 +22,6 @@ case $(echo -e "$xwayland\n$vrr\n$igpu\n$dgpu" | rofi -dmenu -theme ~/.config/ro
         fi;;
     $igpu)
         notify-send 'Mux: setting iGPU...'
-        touch ~/reboot
         supergfxctl -m Integrated
         sleep 15
         notify-send 'Mux: iGPU';;

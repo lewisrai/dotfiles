@@ -36,7 +36,6 @@ packages=(
     'proton-vpn-gtk-app'
     'qbittorrent'
     'qgis'
-    'qt6ct'
     'rhythmbox'
     'rofi'
     'ruff'
@@ -56,6 +55,7 @@ aur=(
     'catppuccin-gtk-theme-mocha'
     'catppuccin-qt5ct-git'
     'helium-browser-bin'
+    'hyprqt6engine'
     'neo4j-desktop'
     'vesktop-bin'
 )
