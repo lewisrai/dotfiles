@@ -77,7 +77,6 @@ packages=(
 
 aur=(
     'alvr-launcher-bin'
-    'catppuccin-gtk-theme-mocha'
     'pince-bin'
     'soteria-bin'
     'soundux'

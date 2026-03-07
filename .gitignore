@@ -47,6 +47,8 @@
 !/.local/share/lutris/runners/*
 !/.local/share/nwg-look/
 !/.local/share/nwg-look/*
+!/.local/share/themes/
+!/.local/share/themes/**/*
 
 !/.bash_profile
 !/.bashrc
