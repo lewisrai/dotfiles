@@ -4,8 +4,7 @@
 !/.config/Proton/
 !/.config/Proton/**/*
 !/.config/btop/
-!/.config/btop/themes/
-!/.config/btop/themes/*
+!/.config/btop/**/*
 !/.config/dunst/
 !/.config/dunst/*
 !/.config/foot/
@@ -42,9 +41,10 @@
 !/.local/share/fcitx5/
 !/.local/share/fcitx5/**/*
 !/.local/share/lutris/
-!/.local/share/lutris/lutris.conf
 !/.local/share/lutris/runners/
 !/.local/share/lutris/runners/*
+!/.local/share/lutris/lutris.conf
+!/.local/share/lutris/system.yml
 !/.local/share/nwg-look/
 !/.local/share/nwg-look/*
 !/.local/share/themes/
