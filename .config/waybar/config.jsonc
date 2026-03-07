@@ -1,0 +1,119 @@
+{
+	"layer": "top",
+	"modules-left": ["hyprland/workspaces", "tray", "hyprland/window"],
+	"modules-center": ["clock"],
+	"modules-right": ["privacy", "network", "bluetooth", "backlight", "pulseaudio", "group/power"],
+
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": ["power-profiles-daemon", "battery"]
+    },
+
+    "hyprland/workspaces": {
+        "tooltip": false,
+        "format": "<span color=\"#f5c2e7\">{icon}</span>",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "hyprland/window": {
+		"tooltip": false,
+        "format": "{class}"
+    },
+
+    "clock": {
+        "tooltip": false,
+        "format": "{:L%a %d - %R}"
+    },
+
+    "privacy": {
+        "tooltip": false,
+        "icon-size": 18,
+        "icon-spacing": 10,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": false
+            },
+            {
+                "type": "audio-in",
+                "tooltip": false
+            },
+            {
+                "type": "audio-out",
+                "tooltip": false
+            }
+        ]
+    },
+    "network": {
+		"tooltip": false,
+        "format": "{icon} {ifname}", 
+        "format-disabled": "󰤮 off",
+        "format-disconnected": "󰤮 none",
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "bluetooth": {
+		"tooltip": false,
+        "format": "󰂯 {status}",
+        "format-off": "󰂲 off",
+        "format-disabled": "󰂲 off",
+        "on-click": "pkill blueman-manager || blueman-manager"
+    }, 
+    "backlight": {
+		"tooltip": false,
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-click": "brightnessctl set 50%",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+	"pulseaudio": {
+		"tooltip": false,
+		"format": "{format_source} {icon} {volume}%",
+		"format-muted": "{format_source}  {volume}%",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭", 
+		"format-icons": {
+			"default": ["", "", ""]
+		},
+        "on-click": "pkill pwvucontrol || pwvucontrol"
+	},
+    "power-profiles-daemon": {
+        "tooltip": false,
+        "format-icons": {
+            "power-saver": " ",
+            "balanced": " ",
+            "performance": "󱪂 "
+         }
+    },
+    "battery": {
+		"tooltip": false,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰂎", "󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
+        "format-charging": "󰂄 {capacity}%",
+        "format-warning": "󰂃 {capacity}%",
+        "format-critical": "󰂃 {capacity}%",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "events": {
+            "on-discharging-warning": "notify-send 'Battery at 20%'",
+            "on-discharging-critical": "notify-send 'Battery at 10%'"
+        }
+    }
+}

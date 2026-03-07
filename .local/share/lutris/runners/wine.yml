@@ -1,0 +1,6 @@
+wine:
+  Graphics: wayland
+  battleye: false
+  eac: false
+  fsr: false
+  version: system

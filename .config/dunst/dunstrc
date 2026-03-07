@@ -1,0 +1,20 @@
+[global]
+    width = (480, 480)
+    height = (120, 120)
+    offset = (40, 32)
+    notification_limit = 5
+    frame_width = 2
+    gap_size = 6
+    font = "FiraMono Nerd Font 16"
+    history_length = 0
+    corner_radius = 8
+
+[rules]
+    background = "#1e1e2e"
+    foreground = "#f5c2e7"
+    highlight = "#f5c2e7"
+    frame_color = "#f5c2e7"
+    timeout = 3
+
+[urgency_critical]
+    foreground = "#f38ba8"
