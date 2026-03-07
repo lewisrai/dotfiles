@@ -41,7 +41,6 @@ packages=(
     'obsidian'
     'ollama'
     'otf-firamono-nerd'
-    'powertop'
     'proton-cachyos'
     'proton-vpn-gtk-app'
     'pwvucontrol'
@@ -78,9 +77,7 @@ packages=(
 
 aur=(
     'alvr-launcher-bin'
-    'catppuccin-fcitx5-git'
     'catppuccin-gtk-theme-mocha'
-    'catppuccin-qt5ct-git'
     'pince-bin'
     'soteria-bin'
     'soundux'

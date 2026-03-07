@@ -25,7 +25,8 @@
 !/.config/nwg-look/
 !/.config/nwg-look/*
 !/.config/qt6ct/
-!/.config/qt6ct/*
+!/.config/qt6ct/colors/
+!/.config/qt6ct/colors/*
 !/.config/rofi/
 !/.config/rofi/*
 !/.config/waybar/
@@ -38,6 +39,8 @@
 
 !/.local/
 !/.local/share/
+!/.local/share/fcitx5/
+!/.local/share/fcitx5/**/*
 !/.local/share/lutris/
 !/.local/share/lutris/lutris.conf
 !/.local/share/lutris/runners/
