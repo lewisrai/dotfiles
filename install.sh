@@ -48,6 +48,7 @@ packages=(
     'python-email-validator'
     'python-fastapi'
     'python-jose'
+    'python-openai'
     'python-pygame'
     'python-pytest-asyncio'
     'python-python-multipart'
@@ -77,6 +78,7 @@ packages=(
 
 aur=(
     'alvr-launcher-bin'
+    'osu-lazer-bin'
     'pince-bin'
     'soteria-bin'
     'soundux'
@@ -126,9 +128,6 @@ sudo mkdir /etc/scx_loader/
 cat << 'EOF' | sudo tee -i /etc/scx_loader/config.toml
 default_sched = "scx_lavd"
 default_mode = "PowerSave"
-
-[scheds.scx_lavd]
-gaming_mode = ["--performance", "--no-core-compaction"]
 EOF
 
 cat << 'EOF' | sudo tee -i /etc/systemd/system/no-turbo.service

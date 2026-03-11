@@ -15,6 +15,7 @@ export QT_IM_MODULE=fcitx
 export QT_IM_MODULES='wayland;fcitx'
 
 export PROTON_USE_NTSYNC=1
+export SDL_VIDEODRIVER=wayland
 
 sed -i -e 's|#xwayland:enabled|xwayland:enabled|' ~/.config/hypr/hyprland.conf
 
