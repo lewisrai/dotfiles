@@ -17,6 +17,8 @@
 !/.config/hypr/*
 !/.config/imv/
 !/.config/imv/*
+!/.config/lazygit/
+!/.config/lazygit/*
 !/.config/MangoHud/
 !/.config/MangoHud/*
 !/.config/mpv/

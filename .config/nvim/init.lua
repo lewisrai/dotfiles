@@ -162,8 +162,8 @@ require("lazy").setup({
                 vim.lsp.enable("clangd")
                 vim.lsp.enable("jedi_language_server")
                 vim.lsp.enable("luals")
-                vim.lsp.enable("ruff")
                 vim.lsp.enable("rust_analyzer")
+                vim.lsp.enable("ty")
             end,
         },
         {

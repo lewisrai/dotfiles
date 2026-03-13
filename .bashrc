@@ -6,9 +6,10 @@ alias install='paru -Syu'
 alias remove='paru -Rsn'
 alias update='paru -Syu'
 
-alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.nv/; history -c; paru -Scc --noconfirm;'
+alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.mono/ ~/.nv/; history -c; paru -Scc --noconfirm;'
 alias testmon='sleep 3 && hyprctl monitors'
 alias scx='pkexec systemctl enable scx_loader.service'
+alias gpum='supergfxctl -g'
 
 alias bun='bun --bun'
 alias bunx='bunx --bun'
