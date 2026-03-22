@@ -14,11 +14,11 @@ export XMODIFIERS=@im=fcitx
 export QT_IM_MODULE=fcitx
 export QT_IM_MODULES='wayland;fcitx'
 
-export PROTON_USE_NTSYNC=1
+export PROTON_ENABLE_WAYLAND=1
 export SDL_VIDEODRIVER=wayland
 
 sed -i -e 's|#xwayland:enabled|xwayland:enabled|' ~/.config/hypr/hyprland.conf
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-    start-hyprland > /dev/null
+    hyprland > /dev/null
 fi

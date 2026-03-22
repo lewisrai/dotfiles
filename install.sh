@@ -27,6 +27,7 @@ packages=(
     'imv'
     'isoimagewriter'
     'jedi-language-server'
+    'lact'
     'lazygit'
     'libreoffice-fresh'
     'lsp-plugins-lv2'
@@ -41,7 +42,7 @@ packages=(
     'obsidian'
     'ollama'
     'otf-firamono-nerd'
-    'proton-cachyos'
+    'proton-cachyos-slr'
     'proton-vpn-gtk-app'
     'pwvucontrol'
     'python-argon2-cffi'
@@ -72,7 +73,6 @@ packages=(
     'uvicorn'
     'vesktop-bin'
     'waybar'
-    'wine-cachyos'
     'xdg-desktop-portal-hyprland'
 )
 

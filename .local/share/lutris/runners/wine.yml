@@ -3,4 +3,4 @@ wine:
   battleye: false
   eac: false
   fsr: false
-  version: system
+  version: proton-cachyos-slr

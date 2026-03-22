@@ -211,6 +211,7 @@ require("lazy").setup({
                 vim.keymap.set("n", "<leader>b", Snacks.picker.buffers)
 
                 return {
+                    bigfile = {},
                     notifier = {},
                     picker = {},
                 }

@@ -1,6 +1,4 @@
 system:
   disable_runtime: true
-  env:
-    LD_PRELOAD: /usr/lib/libmimalloc.so
-    UMU_RUNTIME_UPDATE: '0'
+  env: {}
   game_path: /home/laptop/games
