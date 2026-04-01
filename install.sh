@@ -42,6 +42,7 @@ packages=(
     'obsidian'
     'ollama'
     'otf-firamono-nerd'
+    'prismlauncher'
     'proton-cachyos-slr'
     'proton-vpn-gtk-app'
     'pwvucontrol'
@@ -77,7 +78,6 @@ packages=(
 )
 
 aur=(
-    'alvr-launcher-bin'
     'osu-lazer-bin'
     'pince-bin'
     'soteria-bin'
