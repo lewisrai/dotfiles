@@ -97,6 +97,9 @@ vim.api.nvim_exec2("autocmd TermOpen * setlocal nonumber norelativenumber signco
 vim.api.nvim_exec2("autocmd TermOpen * startinsert", {})
 vim.api.nvim_exec2("autocmd TextYankPost * lua vim.highlight.on_yank()", {})
 
+vim.cmd.packadd("nvim.undotree")
+vim.keymap.set("n", "<leader>u", require("undotree").open)
+
 
 vim.api.nvim_create_autocmd("PackChanged", { callback = function(e)
     if e.data.spec.name == 'nvim-treesitter' and e.data.kind == 'update' then

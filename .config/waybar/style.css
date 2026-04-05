@@ -48,12 +48,6 @@ window#waybar.empty #window {
     transition: 0.3s;
 }
 
-#backlight:hover {
-    background: #f5c2e7;
-    color: #1e1e2e;
-    transition: 0.3s;
-}
-
 #pulseaudio:hover {
     background: #f5c2e7;
     color: #1e1e2e;

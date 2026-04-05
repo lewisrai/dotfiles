@@ -41,6 +41,7 @@ packages=(
     'obs-studio'
     'obsidian'
     'ollama'
+    'opencode'
     'otf-firamono-nerd'
     'prismlauncher'
     'proton-cachyos-slr'
@@ -64,12 +65,16 @@ packages=(
     'qt6ct'
     'rust'
     'rust-analyzer'
-    'sbctl' 
     'scx-scheds'
     'scx-tools'
     'steam'
     'supergfxctl'
     'thunar' 
+    'tree-sitter-bash'
+    'tree-sitter-cli'
+    'tree-sitter-javascript'
+    'tree-sitter-python'
+    'tree-sitter-rust'
     'ty'
     'uvicorn'
     'vesktop-bin'
@@ -199,10 +204,6 @@ cat << 'EOF' | sudo tee -i /etc/issue
                            yNh/..------..`
  
 EOF
-
-sudo sbctl create-keys
-sudo sbctl enroll-keys --microsoft
-sudo limine-enroll-config
 
 mv install.sh ~/
 rm -rf ~/dotfiles/
