@@ -177,27 +177,31 @@ require("lualine").setup({
     options = { theme = "catppuccin-mocha" },
 })
 
-require("nvim-treesitter.config").setup({
-    ensure_installed = {
-        "bash",
-        "c",
-        "css",
-        "csv",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "regex",
-        "rust",
-        "scss",
-        "toml",
-        "vim",
-    },
-    highlight = { enable = true },
-    indent = { enable = true },
+require("nvim-treesitter").install({
+    "bash",
+    "c",
+    "css",
+    "csv",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "regex",
+    "rust",
+    "scss",
+    "toml",
+    "vim",
+})
+
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        pcall(vim.treesitter.start)
+    end,
 })
 
 require("oil").setup({

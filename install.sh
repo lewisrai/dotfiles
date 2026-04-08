@@ -83,9 +83,9 @@ packages=(
 )
 
 aur=(
+    'cmd-polkit-git'
     'osu-lazer-bin'
     'pince-bin'
-    'soteria-bin'
     'soundux'
     'wbg'
 )
@@ -116,7 +116,7 @@ default_entry: 2
 EOF
 
 sudo sed -i -e 's|base ||' -e 's|udev|systemd|' -e 's|consolefont ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
-sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 pcie_aspm=force rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
+sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet loglevel=5|' -e 's|splash ||' /etc/default/limine
 
 sudo pacman -Rsn cachyos-plymouth-bootanimation pavucontrol plymouth switcheroo-control --noconfirm
 
