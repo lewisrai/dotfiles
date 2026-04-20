@@ -40,7 +40,6 @@ packages=(
     'nwg-look'
     'obs-studio'
     'obsidian'
-    'ollama'
     'opencode'
     'otf-firamono-nerd'
     'prismlauncher'
@@ -69,6 +68,8 @@ packages=(
     'scx-tools'
     'steam'
     'supergfxctl'
+    'texstudio'
+    'texlive-meta'
     'thunar' 
     'tree-sitter-bash'
     'tree-sitter-cli'
@@ -84,6 +85,7 @@ packages=(
 
 aur=(
     'cmd-polkit-git'
+    'llama.cpp'
     'osu-lazer-bin'
     'pince-bin'
     'soundux'
