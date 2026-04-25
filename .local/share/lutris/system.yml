@@ -1,4 +1,0 @@
-system:
-  disable_runtime: true
-  env: {}
-  game_path: /home/laptop/games

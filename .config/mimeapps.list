@@ -8,6 +8,7 @@ audio/flac=mpv.desktop;
 image/jpeg=imv.desktop;
 image/png=imv.desktop;
 text/plain=userapp-foot -e nvim-ERW5K3.desktop;
+application/x-zerosize=userapp-foot -e nvim-ERW5K3.desktop;
 
 [Default Applications]
 application/x-7z-compressed=userapp-7z x-291AD3.desktop
@@ -15,3 +16,4 @@ application/octet-stream=userapp-foot -e nvim-ERW5K3.desktop
 application/zip=userapp-unzip-TA3SD3.desktop
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+application/x-zerosize=userapp-foot -e nvim-ERW5K3.desktop
