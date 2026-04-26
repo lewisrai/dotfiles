@@ -4,6 +4,7 @@ packages=(
     'audacious'
     'bemenu'
     'bemenu-wayland'
+    'biber'
     'biome'
     'blueman'
     'brightnessctl'

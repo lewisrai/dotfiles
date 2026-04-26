@@ -19,8 +19,6 @@
 !/.config/imv/*
 !/.config/lazygit/
 !/.config/lazygit/*
-!/.config/MangoHud/
-!/.config/MangoHud/*
 !/.config/mpv/
 !/.config/mpv/*
 !/.config/nvim/
@@ -30,12 +28,9 @@
 !/.config/qt6ct/
 !/.config/qt6ct/colors/
 !/.config/qt6ct/colors/*
-!/.config/rofi/
-!/.config/rofi/*
 !/.config/waybar/
 !/.config/waybar/*
 !/.config/easyeffectsrc
-!/.config/mimeapps.list
 
 !/.icons/
 !/.icons/**/*
@@ -44,11 +39,6 @@
 !/.local/share/
 !/.local/share/fcitx5/
 !/.local/share/fcitx5/**/*
-!/.local/share/lutris/
-!/.local/share/lutris/runners/
-!/.local/share/lutris/runners/*
-!/.local/share/lutris/lutris.conf
-!/.local/share/lutris/system.yml
 !/.local/share/nwg-look/
 !/.local/share/nwg-look/*
 !/.local/share/themes/
@@ -57,7 +47,6 @@
 !/.bash_profile
 !/.bashrc
 !/.gitignore
-!/cs.sh
 !/install.sh
 !/timer-stretch.sh
 !/timer-workout.sh
