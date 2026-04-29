@@ -46,6 +46,7 @@ packages=(
     'qt6ct'
     'rust'
     'rust-analyzer'
+    'sbctl'
     'scx-scheds'
     'scx-tools'
     'steam'
@@ -90,7 +91,6 @@ term_foreground: cdd6f4
 term_background_bright: 585b70
 term_foreground_bright: cdd6f4
 timeout: 0
-quiet: yes
 default_entry: 2
 EOF
 
@@ -144,5 +144,10 @@ sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reb
 sudo systemctl enable no-turbo.service scx_loader.service set-powersave.service supergfxd.service
 sudo systemctl --user --global enable hypridle.service
 
+sudo sbctl create-keys
+sudo sbctl enroll-keys
+sudo limine-enroll-config
+sudo limine-update
+j
 mv install.sh ~/
 rm -rf ~/dotfiles/
