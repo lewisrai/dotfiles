@@ -31,6 +31,8 @@
 !.config/waybar/
 !.config/waybar/*
 !.config/easyeffectsrc
+!.config/user-dirs.dirs
+!.config/user-dirs.locale
 
 !.icons/
 !.icons/**/*
