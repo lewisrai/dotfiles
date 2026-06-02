@@ -1,11 +1,10 @@
 alias grep='grep --color=auto'
 alias ls='ls -A -l --color=auto --group-directories-first'
 
-alias install='paru -Syu'
-alias remove='paru -Rsn'
+alias parui='paru -Syu'
+alias parur='paru -Rsn'
 
-alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.nv/ ~/.texlive/; history -c; paru -Scc --noconfirm;'
-alias testmon='sleep 3 && hyprctl monitors'
+alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.npm/ ~/.nv/ ~/.pki/ ~/.texlive/; history -c; paru -Scc --noconfirm;'
 alias gpum='supergfxctl -g'
 
 alias bun='bun --bun'
