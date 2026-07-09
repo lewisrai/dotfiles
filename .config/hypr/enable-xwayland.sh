@@ -1,5 +1,5 @@
-if hyprctl getoption xwayland:enabled | grep 0; then
-    sed -i -e 's|xwayland:enabled|#xwayland:enabled|' ~/.config/hypr/hyprland.conf
+if hyprctl getoption xwayland.enabled | grep false; then
+    sed -i -e 's|identifier = 0|identifier = 1|' ~/.config/hypr/hyprland.lua
     hyprctl reload
     notify-send -h string:x-dunst-stack-tag:xwayland "xwayland: enabled"
 fi

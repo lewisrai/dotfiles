@@ -172,9 +172,7 @@ hl.config({
         enable_anr_dialog = false,
         disable_watchdog_warning = true,
     },
-    xwayland = {
-        enabled = false,
-    },
+    xwayland = { enabled = false },
     ecosystem = {
         no_update_news = true,
         no_donation_nag = true,
@@ -190,6 +188,20 @@ hl.device({
     name = "asue120d:00-04f3:31fb-touchpad",
     accel_profile = "",
 })
+
+function enable_xwayland()
+    identifier = 1
+
+    if identifier == 0 then
+        return
+    end
+
+    hl.config({
+        xwayland = { enabled = true },
+    })
+end
+
+enable_xwayland()
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("wbg .config/hypr/wallpaper.png")
