@@ -15,7 +15,7 @@ export QT_IM_MODULES='wayland;fcitx'
 
 export BEMENU_OPTS='--fn "FiraMonoNerdFont 14" --tb "#1e1e2e" --tf "#f5c2e7" --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --hb "#1e1e2e" --hf "#f9e2af" --ab "#1e1e2e" --af "#cdd6f4" --bdr "#f5c2e7"'
 
-sed -i -e 's|identifier = 1|identifier = 0|' ~/.config/hypr/hyprland.lua
+sed -i -e 's|xwayland = 1|xwayland = 0|' ~/.config/hypr/hyprland.lua
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
     hyprland > /dev/null
