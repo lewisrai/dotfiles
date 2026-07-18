@@ -19,6 +19,8 @@
 !.config/imv/*
 !.config/lazygit/
 !.config/lazygit/*
+!.config/mango/
+!.config/mango/*
 !.config/mpv/
 !.config/mpv/*
 !.config/nvim/

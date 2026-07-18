@@ -10,13 +10,13 @@ window#waybar {
 	background: transparent;
 }
 
-#workspaces, #window, #tray, #clock, #privacy, #network, #bluetooth, #backlight, #pulseaudio, #power {
+#custom-laptop, #tray, #clock, #privacy, #network, #bluetooth, #backlight, #pulseaudio, #power {
     margin-top: 12px;
     margin-bottom: 0px;
     margin-left: 5px;
     margin-right: 5px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     padding-left: 10px;
     padding-right: 10px;
     background: #1e1e2e;
@@ -27,7 +27,7 @@ window#waybar {
     border-style: solid;
 }
 
-#workspaces {
+#custom-laptop {
     margin-left: 40px;
 }
 

@@ -19,7 +19,6 @@ packages=(
     'helium-browser-bin'
     'hunspell-en_gb'
     'hypridle'
-    'hyprland'
     'hyprlock'
     'hyprshot'
     'imv'
@@ -31,6 +30,7 @@ packages=(
     'libreoffice-fresh'
     'lsp-plugins-lv2'
     'lua-language-server'
+    'mango'
     'mpv'
     'network-manager-applet'
     'nvim'
@@ -41,6 +41,7 @@ packages=(
     'otf-firamono-nerd'
     'proton-vpn-gtk-app'
     'pwvucontrol'
+    'quickshell'
     'qt6ct'
     'rust'
     'rust-analyzer'
@@ -54,13 +55,12 @@ packages=(
     'tree-sitter-cli'
     'ty'
     'waybar'
-    'xdg-desktop-portal-hyprland'
+    'xdg-desktop-portal-wlr'
 )
 
 aur=(
     'cmd-polkit-git'
     'llama.cpp'
-    'wbg'
 )
 
 rm -rf ~/.*

@@ -1,6 +1,6 @@
 {
 	"layer": "top",
-	"modules-left": ["hyprland/workspaces", "tray", "hyprland/window"],
+	"modules-left": ["custom/laptop", "tray"],
 	"modules-center": ["clock"],
 	"modules-right": ["privacy", "network", "bluetooth", "backlight", "pulseaudio", "group/power"],
 
@@ -9,30 +9,12 @@
         "modules": ["power-profiles-daemon", "battery"]
     },
 
-    "hyprland/workspaces": {
-        "tooltip": false,
-        "format": "<span color=\"#f5c2e7\">{icon}</span>",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
-        "persistent-workspaces": {
-            "*": 5
-        }
+    "custom/laptop": {
+        "format": "laptop"
     },
     "tray": {
         "icon-size": 18,
         "spacing": 10
-    },
-    "hyprland/window": {
-		"tooltip": false,
-        "format": "{class}"
     },
 
     "clock": {
