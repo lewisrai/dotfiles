@@ -54,7 +54,6 @@ packages=(
     'thunar' 
     'tree-sitter-cli'
     'ty'
-    'waybar'
     'xdg-desktop-portal-wlr'
 )
 
