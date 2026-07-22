@@ -57,7 +57,6 @@ packages=(
 )
 
 aur=(
-    'cmd-polkit-git'
     'llama.cpp'
 )
 
