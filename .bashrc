@@ -32,9 +32,9 @@ timer() {
             text="$i ${words[@]:1}"
 
             if [ $i -gt 6 ]; then
-                notify-send -h string:x-dunst-stack-tag:timer "$text"
+                notify-send -h string:tag:timer "$text"
             else
-                notify-send -h string:x-dunst-stack-tag:timer -u critical "$text"
+                notify-send -h string:tag:timer -u critical "$text"
             fi
 
             sleep 1

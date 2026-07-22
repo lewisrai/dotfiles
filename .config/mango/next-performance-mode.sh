@@ -1,5 +1,5 @@
 set_profile() {
-    notify-send -h string:x-dunst-stack-tag:powerprofile "Power Plan: $1"
+    notify-send -h string:tag:powerprofile "Power Plan: $1"
     powerprofilesctl set $1
 }
 

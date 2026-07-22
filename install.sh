@@ -8,7 +8,6 @@ packages=(
     'blueman'
     'brightnessctl'
     'bun'
-    'dunst'
     'easyeffects'
     'foot'
     'fcitx5-im'
