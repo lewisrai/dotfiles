@@ -28,6 +28,8 @@
 !.config/qt6ct/
 !.config/qt6ct/colors/
 !.config/qt6ct/colors/*
+!.config/quickshell/
+!.config/quickshell/**/*
 !.config/easyeffectsrc
 !.config/user-dirs.dirs
 !.config/user-dirs.locale
