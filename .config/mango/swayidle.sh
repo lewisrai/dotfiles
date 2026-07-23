@@ -1,0 +1,1 @@
+swayidle -w before-sleep 'loginctl lock-session' lock 'echo lock | socat - UNIX-CONNECT:/tmp/quickshell.sock' timeout 270 'brightnessctl -s set 0% && asusctl -k off' resume 'brightnessctl -r' timeout 300 'loginctl lock-session' resume 'brightnessctl -r' timeout 330 'systemd-ac-power || systemctl suspend'

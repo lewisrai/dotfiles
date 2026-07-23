@@ -11,7 +11,6 @@ alias bun='bun --bun'
 alias bunx='bunx --bun'
 alias snvim='sudo nvim --clean'
 
-alias qwen08='llama-server --threads 6 --ctx-size 4096 --parallel 1 --mlock --no-mmap --model ~/documents/qwen08 --temp 0.7 --top-k 20 --top-p 0.8 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 1.5 --checkpoint-every-n-tokens -1 --cache-ram 0 --chat-template-kwargs '\''{"enable_thinking": false}'\'''
 alias gemma31='llama-server --threads 6 --ctx-size 16384 --parallel 1 --mlock --no-mmap --model ~/documents/gemma31 --temp 1.0 --top-k 64 --top-p 0.95 --checkpoint-every-n-tokens -1 --cache-ram 0'
 
 restart() {

@@ -6,6 +6,7 @@ import Quickshell.Services.Polkit
 import Quickshell.Wayland
 
 FloatingWindow {
+    title: "polkit"
     visible: agent.flow
 
     width: 300
