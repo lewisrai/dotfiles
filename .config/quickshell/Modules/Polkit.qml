@@ -5,41 +5,56 @@ import Quickshell
 import Quickshell.Services.Polkit
 import Quickshell.Wayland
 
+import "./Common/"
+
 FloatingWindow {
     title: "polkit"
     visible: agent.flow
 
-    width: 300
-    height: 200
+    implicitWidth: 400
+    implicitHeight: 200
+    color: "#1e1e2e"
 
     PolkitAgent {
         id: agent
     }
 
     ColumnLayout {
-        spacing: 12
         anchors.fill: parent
+        anchors.margins: 24
 
-        Text {
+        StyledText {
             Layout.fillWidth: true
+            font.pixelSize: 28
+            text: "Polkit"
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        StyledText {
+            Layout.fillWidth: true
+            text: agent.flow ? agent.flow.message : ""
             wrapMode: Text.WordWrap
-            text: agent.flow.message
+            horizontalAlignment: Text.AlignHCenter
         }
 
         TextField {
-            id: passwordInput
+            id: password
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: 240
+            horizontalAlignment: Text.AlignHCenter
+
             echoMode: TextInput.Password
-            placeholderText: "Password"
             focus: true
-            Layout.fillWidth: true
         }
 
         Keys.onPressed: function(event) {
             if (event.key === Qt.Key_Return) {
-                agent.flow.submit(passwordInput.text)
-                passwordInput.text = ""
+                agent.flow.submit(password.text)
+                password.text = ""
             } else if (event.key === Qt.Key_Escape) {
                 agent.flow.cancelAuthenticationRequest()
+                password.text = ""
             }
         }
     }

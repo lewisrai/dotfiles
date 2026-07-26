@@ -1,7 +1,6 @@
 packages=(
     '7zip'
     'asusctl'
-    'biber'
     'biome'
     'blueman'
     'brightnessctl'
@@ -10,19 +9,17 @@ packages=(
     'foot'
     'fcitx5-im'
     'fcitx5-mozc'
-    'gimp'
     'gvfs'
     'gvfs-mtp'
     'helium-browser-bin'
     'hunspell-en_gb'
+    'hypridle'
     'hyprshot'
     'imv'
-    'isoimagewriter'
     'jedi-language-server'
-    'kdenlive'
-    'lact'
     'lazygit'
     'libreoffice-fresh'
+    'llama-cpp'
     'lsp-plugins-lv2'
     'lua-language-server'
     'mango'
@@ -30,8 +27,6 @@ packages=(
     'network-manager-applet'
     'nvim'
     'nwg-look'
-    'obs-studio'
-    'obsidian'
     'opencode'
     'otf-firamono-nerd'
     'proton-vpn-gtk-app'
@@ -44,18 +39,11 @@ packages=(
     'scx-scheds'
     'scx-tools'
     'socat'
-    'swayidle'
     'supergfxctl'
-    'texstudio'
-    'texlive-meta'
     'thunar' 
     'tree-sitter-cli'
     'ty'
     'xdg-desktop-portal-wlr'
-)
-
-aur=(
-    'llama.cpp'
 )
 
 rm -rf ~/.*
@@ -82,8 +70,6 @@ sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,1
 sudo pacman -Rsn cachyos-plymouth-bootanimation cachyos-plymouth-theme plymouth switcheroo-control --noconfirm
 
 sudo pacman -Syu "${packages[@]}" --needed --noconfirm
-
-paru -Syu "${aur[@]}"
 
 sudo mkdir -p /usr/local/share/kbd/keymaps/
 sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/share/kbd/keymaps/uk-custom.map.gz

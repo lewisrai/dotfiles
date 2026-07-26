@@ -1,42 +1,47 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
 
-Repeater {
-    model: SystemTray.items
+RowLayout {
+    spacing: 14
 
-    delegate: Item {
-        id: trayItem
-        width: 24
-        height: 24
+    Repeater {
+        model: SystemTray.items
 
-        Image {
-            anchors.centerIn: parent
-            width: 20
+        delegate: Item {
+            id: trayItem
+
             height: 20
-            fillMode: Image.PreserveAspectFit
-            source: modelData.icon
-        }
+            width: 20
 
-        MouseArea {
-            anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
+            Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: modelData.icon
+            }
 
-            onClicked: function(mouse) {
-                if (mouse.button === Qt.LeftButton) {
-                    modelData.activate()
-                } else if (mouse.button === Qt.RightButton) {
-                    trayMenu.open()
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                cursorShape: Qt.PointingHandCursor
+                hoverEnabled: true
+                onClicked: function(mouse) {
+                    switch (mouse.button) {
+                        case Qt.LeftButton: modelData.activate()
+                        case Qt.RightButton: trayMenu.open()
+                    }
                 }
             }
-        }
 
-        QsMenuAnchor {
-            id: trayMenu
-            menu: modelData.menu
-            anchor.item: trayItem
-            anchor.edges: Edges.Bottom | Edges.Right
+            QsMenuAnchor {
+                id: trayMenu
+
+                anchor.edges: Edges.Bottom | Edges.Right
+                anchor.item: trayItem
+                menu: modelData.menu
+            }
         }
     }
 }

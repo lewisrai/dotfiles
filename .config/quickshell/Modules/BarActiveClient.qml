@@ -1,5 +1,15 @@
-import QtQuick
+import Quickshell.Io
 
-Text {
-    text: activeClient.client
+import "./Common/"
+
+StyledText {
+    Process {
+        command: ["mmsg", "watch", "focusing-client"]
+        running: true
+        stdout: SplitParser {
+            onRead: data => {
+                text = JSON.parse(data).appid
+            }
+        }
+    }
 }

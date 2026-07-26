@@ -1,36 +1,31 @@
-import QtQuick
 import Quickshell.Io
 
-Text {
+import "./Common/"
+
+StyledText {
     id: brightness
 
-    readonly property string backlight: "/sys/class/backlight/intel_backlight/brightness"
-    property int level: 0
     property int max: 1
-    property string icon: "󰃞"
 
     FileView {
-        id: currentBrightness
-
-        path: brightness.backlight
-
+        path: "/sys/class/backlight/intel_backlight/brightness"
         watchChanges: true
-        onFileChanged: getBrightness.running = true
+        onFileChanged: update.running = true
     }
 
     Process {
-        id: getBrightness
+        id: update
 
         command: ["brightnessctl", "get"]
         running: true
-
         stdout: SplitParser {
             onRead: data => {
-                brightness.level = Number(data) * 100 / brightness.max
+                const level = Number(data) * 100 / brightness.max
 
-                if (brightness.level >= 66) brightness.icon = "󰃠"
-                else if (brightness.level >= 33) brightness.icon = "󰃟"
-                else brightness.icon = "󰃞"
+                if (level < 10) text = `󰃞 ~${level}%`
+                else if (level < 34) text = `󰃞 ${level}%`
+                else if (level < 67) text = `󰃟 ${level}%`
+                else text = `󰃠 ${level}%`
             }
         }
     }
@@ -38,13 +33,10 @@ Text {
     Process {
         command: ["brightnessctl", "max"]
         running: true
-
         stdout: SplitParser {
             onRead: data => {
                 brightness.max = Number(data)
             }
         }
     }
-
-    text: `${brightness.icon}  ${brightness.level}%`
 }

@@ -1,10 +1,11 @@
 alias grep='grep --color=auto'
 alias ls='ls -A -l --color=auto --group-directories-first'
 
-alias parui='paru -Syu'
-alias parur='paru -Rsn'
+alias install='sudo pacman -Syu'
+alias remove='sudo pacman -Rsn'
+alias update='sudo pacman -Syu'
 
-alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.npm/ ~/.nv/ ~/.pki/ ~/.texlive/; history -c; paru -Scc --noconfirm;'
+alias clean='rm -rf ~/.bun ~/.cache/ ~/.cargo/ ~/.npm/ ~/.nv/ ~/.pki/ ~/.texlive/; history -c; sudo pacman -Scc --noconfirm;'
 alias gpum='supergfxctl -g'
 
 alias bun='bun --bun'

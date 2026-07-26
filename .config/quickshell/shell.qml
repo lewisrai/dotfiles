@@ -3,7 +3,9 @@
 //@ pragma DropExpensiveFonts
 //@ pragma UseQApplication
 
+import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 
 import "./Modules/"
@@ -11,40 +13,40 @@ import "./Modules/"
 ShellRoot {
     Bar {}
 
-    Launcher {
-        id: launcher
-    }
+    Launcher { id: launcher }
 
-    Notifications {}
+    Lock { id: lock }
 
     Polkit {}
 
-    Server {}
+    SocketServer {
+        active: true
+        path: "/tmp/quickshell.sock"
+        handler: Socket {
+            parser: SplitParser {
+                onRead: message => {
+                    switch (message) {
+                        case "launcher": launcher.open(); break
+                        case "lock": lock.locked = true; break
+                    }
+                    connected = false
+                }
+            }
+        }
+    }
 
-    Wallpaper {}
+    PanelWindow {
+        anchors.bottom: true
+        anchors.left: true
+        anchors.right: true
+        anchors.top: true
 
-    // This stores all the information shared between the lock surfaces on each screen.
-    LockContext {
-		id: lockContext
+        WlrLayershell.exclusionMode: ExclusionMode.Ignore
+        WlrLayershell.layer: WlrLayer.Background
 
-		onUnlocked: {
-            // Unlock the screen before exiting, or the compositor will display a
-			// fallback lock you can't interact with.
-			lock.locked = false;
-		}
-	}
-
-	WlSessionLock {
-		id: lock
-
-        // Lock the session immediately when quickshell starts.
-		locked: false
-
-		WlSessionLockSurface {
-			LockSurface {
-				anchors.fill: parent
-				context: lockContext
-			}
-		}
-	}
+        Image {
+            anchors.fill: parent
+            source: "wallpaper.png"
+        }
+    }
 }

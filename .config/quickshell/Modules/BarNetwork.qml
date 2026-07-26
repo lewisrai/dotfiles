@@ -1,21 +1,27 @@
 import QtQuick
 import Quickshell.Networking
 
-Text {
-    readonly property NetworkDevice network: Networking.devices.values[0]
+import "./Common/"
+
+StyledText {
+    readonly property var firstDevice: Networking.devices.values?.[0]
+    readonly property var firstNetwork: firstDevice?.networks.values?.[0]
 
     text: {
-        const name = network?.name
+        switch (firstDevice?.state) {
+            case ConnectionState.Connected: {
+                const strength = firstNetwork?.signalStrength
 
-        const strength = network?.networks.values[0].signalStrength
-
-        var strengthIcon = "󰤮"
-
-        if (strength > 0.75) strengthIcon = "󰤨"
-        else if (strength > 0.5) strengthIcon = "󰤥"
-        else if (strength > 0.25) strengthIcon = "󰤢"
-        else if (strength > 0) strengthIcon = "󰤟"
-
-        return `${strengthIcon}  ${name}`
+                if (strength > 0.75) return `󰤨 ${firstDevice.name}`
+                else if (strength > 0.5) return `󰤥 ${firstDevice.name}`
+                else if (strength > 0.25) return `󰤢 ${firstDevice.name}`
+                else if (strength > 0) return `󰤟 ${firstDevice.name}`
+                else return `󰤮 ${firstDevice.name}`
+            }
+            case ConnectionState.Connecting: return `~ ${firstDevice.name}`
+            case ConnectionState.Disconnected: return `󰤮 ${firstDevice.name}`
+            case ConnectionState.Disconnecting: return `~ ${firstDevice.name}`
+            default: return "󰤮   off"
+        }
     }
 }

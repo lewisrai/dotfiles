@@ -1,12 +1,15 @@
 import QtQuick
 
-Text {
-    Timer {
-        property var locale: Qt.locale()
+import "./Common/"
 
+StyledText {
+    readonly property var locale: Qt.locale()
+
+    Timer {
         interval: 1000
-        running: true
         repeat: true
-        onTriggered: parent.text = locale.toString(new Date(), "ddd dd - HH:mm")
+        running: true
+        triggeredOnStart: true
+        onTriggered: text = locale.toString(new Date(), "ddd dd - HH:mm")
     }
 }

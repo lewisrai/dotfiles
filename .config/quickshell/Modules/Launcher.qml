@@ -4,17 +4,19 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 
+import "./Common/"
+
 FloatingWindow {
     id: root
     title: "launcher"
 
     visible: false
-    width: 400
-    height: 220
-    color: "transparent"
+    implicitWidth: 400
+    implicitHeight: 220
 
     property var items: []
     property var filtered: []
+    property var selected: 0
 
     function open() {
         visible = true
@@ -22,8 +24,8 @@ FloatingWindow {
     }
 
     function changed() {
-        root.filtered = root.items.filter(item => item.includes(input.text)).slice(0, 3)
-        console.log(root.filtered)
+        root.filtered = root.items.filter(item => item.includes(input.text)).slice(0, 7)
+        root.selected = root.selected < root.filtered.length ? root.selected : root.filtered.length - 1
     }
 
     Process {
@@ -42,51 +44,54 @@ FloatingWindow {
         id: runner
     }
 
-    Rectangle {
-        anchors.fill: parent
-        radius: 12
-        color: "#1e1e1e"
+    color: "#1e1e2e"
 
+    ColumnLayout {
         Keys.onPressed: function(event) {
             if (event.key === Qt.Key_Return && filtered.length > 0) {
-                runner.command = filtered[0]
+                runner.command = filtered[selected]
                 runner.startDetached()
                 root.visible = false
                 items.length = 0
+                selected = 0
+                input.text = ""
             } else if (event.key === Qt.Key_Escape) {
                 root.visible = false
+                selected = 0
                 items.length = 0
+                input.text = ""
+            } else if (event.key === Qt.Key_Up) {
+                selected = selected == 0 ? 0 : selected - 1
+            } else if (event.key === Qt.Key_Down) {
+                selected = selected == filtered.length - 1 ? selected : selected + 1
             }
         }
+        anchors.fill: parent
+        anchors.margins: 12
+        spacing: 0
 
-        Column {
-            anchors.fill: parent
-            anchors.margins: 12
-            spacing: 8
+        TextField {
+            id: input
+            Layout.fillWidth: true
+            focus: true
+            onTextChanged: root.changed()
+        }
 
-            TextField {
-                id: input
+        ListView {
+            width: parent.width
+            height: parent.height
+            model: filtered
+
+            delegate: Rectangle {
                 width: parent.width
-                placeholderText: "Run..."
-                focus: true
-                onTextChanged: root.changed()
-            }
+                height: 24
+                color: "#1e1e2e"
 
-            ListView {
-                width: parent.width
-                height: 150
-                model: filtered
-
-                delegate: Rectangle {
-                    width: parent.width
-                    height: 36
-
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: modelData
-                        color: "black"
-                        leftPadding: 8
-                    }
+                StyledText {
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: index == selected ? "#f9e2af" : "#f5c2e7"
+                    text: modelData
+                    leftPadding: 4
                 }
             }
         }

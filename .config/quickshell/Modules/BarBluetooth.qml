@@ -1,21 +1,15 @@
-import QtQuick
 import Quickshell.Bluetooth
 
-Text {
+import "./Common/"
+
+StyledText {
     readonly property BluetoothAdapter bluetooth: Bluetooth.defaultAdapter
 
     text: {
         switch (bluetooth?.state) {
-            case BluetoothAdapterState.Disabled:
-                return "󰂲 off"
-            case BluetoothAdapterState.Enabled:
-                return "󰂲 on"
-            case BluetoothAdapterState.Disabling:
-                return "󰂲 ~off"
-            case BluetoothAdapterState.Blocked:
-                return "󰂲 off!"
-            case BluetoothAdapterState.Enabling:
-                return "󰂲 ~on"
+            case BluetoothAdapterState.Disabling: return "󰂲  on"
+            case BluetoothAdapterState.Enabled: return "󰂲  on"
+            default: return "󰂲 off"
         }
     }
 }

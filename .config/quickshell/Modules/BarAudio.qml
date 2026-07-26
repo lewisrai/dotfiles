@@ -1,8 +1,8 @@
-import QtQuick
-import Quickshell
 import Quickshell.Services.Pipewire
 
-Text {
+import "./Common/"
+
+StyledText {
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property PwNode source: Pipewire.defaultAudioSource
 
@@ -10,17 +10,23 @@ Text {
         objects: [sink, source]
     }
 
-    readonly property var volume: sink?.audio ? Math.round(sink.audio.volume * 100) : "~"
+    text: {
+        const microphoneIcon = source?.audio ? source.audio.muted ? "󰍭" : "󰍬" : "~"
 
-    readonly property string volumeIcon: {
-        if (volume === "~") return "~"
-        if (volume === 0 || sink.audio.muted) return "󰖁"
-        if (volume < 33) return ""
-        if (volume < 66) return ""
-        return ""
+        var volume = "~~"
+        var volumeIcon = "~"
+
+        if (sink?.audio) {
+            volume = Math.round(sink.audio.volume * 100)
+
+            if (volume < 10) volume = "~" + volume
+
+            if (sink.audio.muted) volumeIcon = "󰖁"
+            else if (volume < 33) volumeIcon = ""
+            else if (volume < 66) volumeIcon = ""
+            else volumeIcon = ""
+        }
+
+        return microphoneIcon + " " + volumeIcon + " " + volume + "%"
     }
-
-    readonly property string microphoneIcon: source?.audio ? source.audio.muted ? "󰍭" : "󰍬" : "~"
-
-    text: `${microphoneIcon} ${volumeIcon} ${volume}%`
 }
