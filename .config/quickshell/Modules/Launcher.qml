@@ -7,91 +7,106 @@ import Quickshell.Io
 import "./Common/"
 
 FloatingWindow {
-    id: root
-    title: "launcher"
+    id: launcher
 
-    visible: false
-    implicitWidth: 400
-    implicitHeight: 220
-
-    property var items: []
     property var filtered: []
-    property var selected: 0
-
-    function open() {
-        visible = true
-        get.running = true
-    }
+    property var items: []
+    property int selected: 0
 
     function changed() {
-        root.filtered = root.items.filter(item => item.includes(input.text)).slice(0, 7)
-        root.selected = root.selected < root.filtered.length ? root.selected : root.filtered.length - 1
+        this.filtered = this.items.filter(i => i.includes(input.text)).slice(0, 8);
+
+        if (this.selected >= this.filtered.length)
+            this.selected = this.filtered.length ? this.filtered.length - 1 : 0;
     }
+
+    function close() {
+        launcher.visible = false;
+        input.clear();
+        items.length = 0;
+        selected = 0;
+    }
+
+    function open() {
+        visible = true;
+        get.running = true;
+    }
+
+    color: "#1e1e2e"
+    implicitHeight: 212
+    implicitWidth: 424
+    title: "launcher"
+    visible: false
 
     Process {
         id: get
+
         command: ["ls", "/usr/bin"]
         running: false
 
         stdout: SplitParser {
             onRead: data => {
-                items.push(data)
+                items.push(data);
             }
         }
-    }
 
-    Process {
-        id: runner
+        onRunningChanged: launcher.changed()
     }
-
-    color: "#1e1e2e"
 
     ColumnLayout {
-        Keys.onPressed: function(event) {
-            if (event.key === Qt.Key_Return && filtered.length > 0) {
-                runner.command = filtered[selected]
-                runner.startDetached()
-                root.visible = false
-                items.length = 0
-                selected = 0
-                input.text = ""
-            } else if (event.key === Qt.Key_Escape) {
-                root.visible = false
-                selected = 0
-                items.length = 0
-                input.text = ""
-            } else if (event.key === Qt.Key_Up) {
-                selected = selected == 0 ? 0 : selected - 1
-            } else if (event.key === Qt.Key_Down) {
-                selected = selected == filtered.length - 1 ? selected : selected + 1
+        anchors.fill: parent
+        anchors.margins: 10
+        spacing: 0
+
+        Keys.onPressed: function (event) {
+            switch (event.key) {
+            case Qt.Key_Return:
+                if (!filtered.length)
+                    return;
+                Runner.exec(filtered[selected]);
+            case Qt.Key_Escape:
+                launcher.close();
+                break;
+            case Qt.Key_Up:
+                if (launcher.selected != 0)
+                    selected--;
+                break;
+            case Qt.Key_Down:
+                if (launcher.selected != launcher.filtered.length - 1)
+                    selected++;
+                break;
             }
         }
-        anchors.fill: parent
-        anchors.margins: 12
-        spacing: 0
 
         TextField {
             id: input
-            Layout.fillWidth: true
+
+            background: null
             focus: true
-            onTextChanged: root.changed()
+            width: parent.width
+
+            cursorDelegate: Rectangle {
+                height: 0
+                width: 0
+            }
+
+            onTextChanged: launcher.changed()
         }
 
         ListView {
-            width: parent.width
             height: parent.height
             model: filtered
+            width: parent.width
 
             delegate: Rectangle {
-                width: parent.width
-                height: 24
                 color: "#1e1e2e"
+                height: 20
+                width: parent.width
 
                 StyledText {
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: index == selected ? "#f9e2af" : "#f5c2e7"
-                    text: modelData
+                    color: index == launcher.selected ? "#f9e2af" : "#f5c2e7"
                     leftPadding: 4
+                    text: modelData
                 }
             }
         }

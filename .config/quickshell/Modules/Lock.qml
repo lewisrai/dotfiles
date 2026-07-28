@@ -23,6 +23,8 @@ WlSessionLock {
                 color: "#f5c2e7"
                 echoMode: TextInput.Password
                 focus: true
+                placeholderText: ""
+                placeholderTextColor: "#f5c2e7"
 
                 cursorDelegate: Rectangle {
                     height: 0
@@ -31,7 +33,7 @@ WlSessionLock {
 
                 onAccepted: {
                     pam.unlock(text);
-                    text = "";
+                    this.clear();
                 }
             }
         }

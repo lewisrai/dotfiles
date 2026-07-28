@@ -3,6 +3,8 @@ import Quickshell.Services.Pipewire
 import "./Common/"
 
 StyledText {
+    id: audio
+
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property PwNode source: Pipewire.defaultAudioSource
 
@@ -15,9 +17,6 @@ StyledText {
         if (this.sink?.audio) {
             volume = Math.round(this.sink.audio.volume * 100);
 
-            if (volume < 10)
-                volume = "~" + volume;
-
             if (this.sink.audio.muted)
                 volumeIcon = "󰖁";
             else if (volume < 33)
@@ -26,12 +25,15 @@ StyledText {
                 volumeIcon = "";
             else
                 volumeIcon = "";
+
+            if (volume < 10)
+                volume = "~" + volume;
         }
 
         return microphoneIcon + " " + volumeIcon + " " + volume + "%";
     }
 
     PwObjectTracker {
-        objects: [this.sink, this.source]
+        objects: [audio.sink, audio.source]
     }
 }

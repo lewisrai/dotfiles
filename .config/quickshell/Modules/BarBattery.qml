@@ -18,24 +18,27 @@ StyledText {
     }
 
     text: {
+        var batteryIcon = "";
         var batteryLevel = Math.round((this.battery?.percentage ?? 0) * 100);
-        var batteryText = "";
 
         if (this.battery?.state === UPowerDeviceState.Charging)
-            batteryText = "󰂄" + " " + batteryLevel + "%";
+            batteryIcon = "󰂄";
         else if (batteryLevel < 10)
-            batteryText = "󰂎" + " " + batteryLevel + "%";
+            batteryIcon = "󰂎";
         else if (batteryLevel < 30)
-            batteryText = "󰁻" + " " + batteryLevel + "%";
+            batteryIcon = "󰁻";
         else if (batteryLevel < 50)
-            batteryText = "󰁽" + " " + batteryLevel + "%";
+            batteryIcon = "󰁽";
         else if (batteryLevel < 70)
-            batteryText = "󰁿" + " " + batteryLevel + "%";
+            batteryIcon = "󰁿";
         else if (batteryLevel < 90)
-            batteryText = "󰂁" + " " + batteryLevel + "%";
+            batteryIcon = "󰂁";
         else
-            batteryText = "󰁹" + " " + batteryLevel + "%";
+            batteryIcon = "󰁹";
 
-        return powerProfileIcon + " " + batteryText;
+        if (batteryLevel < 10)
+            batteryLevel = "~" + batteryLevel;
+
+        return powerProfileIcon + " " + batteryIcon + " " + batteryLevel + "%";
     }
 }

@@ -8,12 +8,11 @@ import Quickshell.Wayland
 import "./Common/"
 
 FloatingWindow {
+    color: "#1e1e2e"
+    implicitHeight: 212
+    implicitWidth: 424
     title: "polkit"
     visible: agent.flow
-
-    implicitWidth: 400
-    implicitHeight: 200
-    color: "#1e1e2e"
 
     PolkitAgent {
         id: agent
@@ -21,40 +20,48 @@ FloatingWindow {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 24
+        anchors.margins: 14
 
-        StyledText {
-            Layout.fillWidth: true
-            font.pixelSize: 28
-            text: "Polkit"
-            horizontalAlignment: Text.AlignHCenter
+        Keys.onPressed: function (event) {
+            if (event.key === Qt.Key_Escape) {
+                agent.flow.cancelAuthenticationRequest();
+                password.clear();
+            }
         }
 
         StyledText {
             Layout.fillWidth: true
+            font.pixelSize: 20
+            horizontalAlignment: Text.AlignHCenter
+            text: "Polkit"
+        }
+
+        StyledText {
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignHCenter
             text: agent.flow ? agent.flow.message : ""
             wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
         }
 
         TextField {
             id: password
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: 240
-            horizontalAlignment: Text.AlignHCenter
-
+            background: null
+            color: "#f5c2e7"
             echoMode: TextInput.Password
             focus: true
-        }
+            placeholderText: ""
+            placeholderTextColor: "#f5c2e7"
 
-        Keys.onPressed: function(event) {
-            if (event.key === Qt.Key_Return) {
-                agent.flow.submit(password.text)
-                password.text = ""
-            } else if (event.key === Qt.Key_Escape) {
-                agent.flow.cancelAuthenticationRequest()
-                password.text = ""
+            cursorDelegate: Rectangle {
+                height: 0
+                width: 0
+            }
+
+            onAccepted: {
+                agent.flow.submit(this.text);
+                this.clear();
             }
         }
     }
