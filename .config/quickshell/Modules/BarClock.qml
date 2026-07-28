@@ -1,15 +1,15 @@
-import QtQuick
+import Quickshell
 
 import "./Common/"
 
 StyledText {
     readonly property var locale: Qt.locale()
 
-    Timer {
-        interval: 1000
-        repeat: true
-        running: true
-        triggeredOnStart: true
-        onTriggered: text = locale.toString(new Date(), "ddd dd - HH:mm")
+    text: this.locale.toString(clock.date, "ddd dd - HH:mm")
+
+    SystemClock {
+        id: clock
+
+        precision: SystemClock.Minutes
     }
 }

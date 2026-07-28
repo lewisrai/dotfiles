@@ -5,23 +5,33 @@ import "./Common/"
 
 StyledText {
     readonly property var firstDevice: Networking.devices.values?.[0]
-    readonly property var firstNetwork: firstDevice?.networks.values?.[0]
+    readonly property var firstNetwork: this.firstDevice?.networks.values?.[0]
 
     text: {
-        switch (firstDevice?.state) {
-            case ConnectionState.Connected: {
-                const strength = firstNetwork?.signalStrength
+        switch (this.firstDevice?.state) {
+        case ConnectionState.Connected:
+            {
+                const strength = this.firstNetwork?.signalStrength;
 
-                if (strength > 0.75) return `󰤨 ${firstDevice.name}`
-                else if (strength > 0.5) return `󰤥 ${firstDevice.name}`
-                else if (strength > 0.25) return `󰤢 ${firstDevice.name}`
-                else if (strength > 0) return `󰤟 ${firstDevice.name}`
-                else return `󰤮 ${firstDevice.name}`
+                if (!strength)
+                    return `󰤮 ${this.firstDevice.name}`;
+                if (strength < 0.25)
+                    return `󰤟 ${this.firstDevice.name}`;
+                else if (strength < 0.5)
+                    return `󰤢 ${this.firstDevice.name}`;
+                else if (strength < 0.75)
+                    return `󰤥 ${this.firstDevice.name}`;
+                else
+                    return `󰤨 ${this.firstDevice.name}`;
             }
-            case ConnectionState.Connecting: return `~ ${firstDevice.name}`
-            case ConnectionState.Disconnected: return `󰤮 ${firstDevice.name}`
-            case ConnectionState.Disconnecting: return `~ ${firstDevice.name}`
-            default: return "󰤮   off"
+        case ConnectionState.Connecting:
+            return `~ ${this.firstDevice.name}`;
+        case ConnectionState.Disconnected:
+            return `󰤮 ${this.firstDevice.name}`;
+        case ConnectionState.Disconnecting:
+            return `~ ${this.firstDevice.name}`;
+        default:
+            return "󰤮   off";
         }
     }
 }

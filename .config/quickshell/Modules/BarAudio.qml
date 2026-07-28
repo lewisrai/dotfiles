@@ -6,27 +6,32 @@ StyledText {
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property PwNode source: Pipewire.defaultAudioSource
 
-    PwObjectTracker {
-        objects: [sink, source]
-    }
-
     text: {
-        const microphoneIcon = source?.audio ? source.audio.muted ? "󰍭" : "󰍬" : "~"
+        const microphoneIcon = this.source?.audio ? this.source.audio.muted ? "󰍭" : "󰍬" : "~";
 
-        var volume = "~~"
-        var volumeIcon = "~"
+        var volume = "~~";
+        var volumeIcon = "~";
 
-        if (sink?.audio) {
-            volume = Math.round(sink.audio.volume * 100)
+        if (this.sink?.audio) {
+            volume = Math.round(this.sink.audio.volume * 100);
 
-            if (volume < 10) volume = "~" + volume
+            if (volume < 10)
+                volume = "~" + volume;
 
-            if (sink.audio.muted) volumeIcon = "󰖁"
-            else if (volume < 33) volumeIcon = ""
-            else if (volume < 66) volumeIcon = ""
-            else volumeIcon = ""
+            if (this.sink.audio.muted)
+                volumeIcon = "󰖁";
+            else if (volume < 33)
+                volumeIcon = "";
+            else if (volume < 66)
+                volumeIcon = "";
+            else
+                volumeIcon = "";
         }
 
-        return microphoneIcon + " " + volumeIcon + " " + volume + "%"
+        return microphoneIcon + " " + volumeIcon + " " + volume + "%";
+    }
+
+    PwObjectTracker {
+        objects: [this.sink, this.source]
     }
 }

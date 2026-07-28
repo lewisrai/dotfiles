@@ -6,27 +6,36 @@ StyledText {
     readonly property UPowerDevice battery: UPower.displayDevice
     readonly property string powerProfileIcon: {
         switch (PowerProfiles.profile) {
-            case PowerProfile.PowerSaver: return ""
-            case PowerProfile.Balanced: return ""
-            case PowerProfile.Performance: return "󱪂"
-            default: return "~"
+        case PowerProfile.PowerSaver:
+            return "";
+        case PowerProfile.Balanced:
+            return "";
+        case PowerProfile.Performance:
+            return "󱪂";
+        default:
+            return "~";
         }
     }
 
     text: {
-        var batteryIcon = ""
-        var batteryLevel = Math.round((battery?.percentage ?? 0) * 100)
+        var batteryLevel = Math.round((this.battery?.percentage ?? 0) * 100);
+        var batteryText = "";
 
-        if (battery.state === UPowerDeviceState.Charging) batteryIcon = "󰂄"
-        else if (batteryLevel < 10) batteryIcon = "󰂎"
-        else if (batteryLevel < 30) batteryIcon = "󰁻"
-        else if (batteryLevel < 50) batteryIcon = "󰁽"
-        else if (batteryLevel < 70) batteryIcon = "󰁿"
-        else if (batteryLevel < 90) batteryIcon = "󰂁"
-        else batteryIcon = "󰁹"
+        if (this.battery?.state === UPowerDeviceState.Charging)
+            batteryText = "󰂄" + " " + batteryLevel + "%";
+        else if (batteryLevel < 10)
+            batteryText = "󰂎" + " " + batteryLevel + "%";
+        else if (batteryLevel < 30)
+            batteryText = "󰁻" + " " + batteryLevel + "%";
+        else if (batteryLevel < 50)
+            batteryText = "󰁽" + " " + batteryLevel + "%";
+        else if (batteryLevel < 70)
+            batteryText = "󰁿" + " " + batteryLevel + "%";
+        else if (batteryLevel < 90)
+            batteryText = "󰂁" + " " + batteryLevel + "%";
+        else
+            batteryText = "󰁹" + " " + batteryLevel + "%";
 
-        if (batteryLevel < 10) batteryLevel = "~" + batteryLevel
-
-        return powerProfileIcon + " " + batteryIcon + " " + batteryLevel + "%"
+        return powerProfileIcon + " " + batteryText;
     }
 }

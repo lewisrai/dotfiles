@@ -14,6 +14,8 @@ alias snvim='sudo nvim --clean'
 
 alias gemma31='llama-server --threads 6 --ctx-size 16384 --parallel 1 --mlock --no-mmap --model ~/documents/gemma31 --temp 1.0 --top-k 64 --top-p 0.95 --checkpoint-every-n-tokens -1 --cache-ram 0'
 
+alias qmlformat='/usr/lib/qt6/bin/qmlformat -n -S --objects-spacing --functions-spacing'
+
 restart() {
     pkill "$1" && "$1" & disown
 }

@@ -10,6 +10,7 @@ StyledText {
     FileView {
         path: "/sys/class/backlight/intel_backlight/brightness"
         watchChanges: true
+
         onFileChanged: update.running = true
     }
 
@@ -18,14 +19,19 @@ StyledText {
 
         command: ["brightnessctl", "get"]
         running: true
+
         stdout: SplitParser {
             onRead: data => {
-                const level = Number(data) * 100 / brightness.max
+                const level = Number(data) * 100 / brightness.max;
 
-                if (level < 10) text = `󰃞 ~${level}%`
-                else if (level < 34) text = `󰃞 ${level}%`
-                else if (level < 67) text = `󰃟 ${level}%`
-                else text = `󰃠 ${level}%`
+                if (level < 10)
+                    text = `󰃞 ~${level}%`;
+                else if (level < 34)
+                    text = `󰃞 ${level}%`;
+                else if (level < 67)
+                    text = `󰃟 ${level}%`;
+                else
+                    text = `󰃠 ${level}%`;
             }
         }
     }
@@ -33,9 +39,10 @@ StyledText {
     Process {
         command: ["brightnessctl", "max"]
         running: true
+
         stdout: SplitParser {
             onRead: data => {
-                brightness.max = Number(data)
+                brightness.max = Number(data);
             }
         }
     }

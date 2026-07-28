@@ -23,14 +23,17 @@ RowLayout {
             }
 
             MouseArea {
-                anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
+                anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
                 hoverEnabled: true
-                onClicked: function(mouse) {
+
+                onClicked: function (mouse) {
                     switch (mouse.button) {
-                        case Qt.LeftButton: modelData.activate()
-                        case Qt.RightButton: trayMenu.open()
+                    case Qt.LeftButton:
+                        modelData.activate();
+                    case Qt.RightButton:
+                        trayMenu.open();
                     }
                 }
             }

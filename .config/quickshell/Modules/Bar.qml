@@ -2,22 +2,20 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import Quickshell.Widgets
 
 import "./Common/"
 import "./"
 
 PanelWindow {
-    anchors.top: true
+    WlrLayershell.layer: WlrLayer.Top
     anchors.left: true
     anchors.right: true
+    anchors.top: true
     color: "transparent"
     implicitHeight: 52
 
-    WlrLayershell.layer: WlrLayer.Top
-
     StyledRectangle {
-        implicitWidth: 175
+        width: 175
         x: 28
 
         BarActiveTag {
@@ -31,18 +29,19 @@ PanelWindow {
 
         BarSystemTray {
             id: tray
+
             anchors.centerIn: parent
         }
     }
 
     StyledRectangle {
         implicitWidth: client.implicitWidth + 28
-        x: 259 + tray.implicitWidth
-
         visible: client.text
+        x: 259 + tray.implicitWidth
 
         BarActiveClient {
             id: client
+
             anchors.centerIn: parent
         }
     }
@@ -57,19 +56,19 @@ PanelWindow {
     }
 
     StyledRectangle {
+        visible: notifications.text
         width: 400
         x: 1495
 
-        visible: notif.text
-
         BarNotifications {
-            id: notif
+            id: notifications
+
             anchors.fill: parent
             anchors.leftMargin: 14
             anchors.rightMargin: 14
             elide: Text.ElideRight
-            wrapMode: Text.NoWrap
             verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.NoWrap
         }
     }
 
@@ -83,28 +82,23 @@ PanelWindow {
     }
 
     StyledRectangle {
+        color: bluetoothArea.containsMouse ? "#f5c2e7" : "#1e1e2e"
         width: 76
         x: 2154
 
-        color: mouseArea1.containsMouse ? "#f5c2e7" : "#1e1e2e"
-
         BarBluetooth {
             anchors.centerIn: parent
+            color: bluetoothArea.containsMouse ? "#1e1e2e" : "#f5c2e7"
         }
 
         MouseArea {
-            id: mouseArea1
+            id: bluetoothArea
+
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
             hoverEnabled: true
 
-            onClicked: {
-                runner2.command = ["sh", "-c", "pkill blueman-manager || blueman-manager"]
-                runner2.startDetached()
-            }
-        }
-
-        Process {
-            id: runner2
+            onClicked: Runner.exec("pkill blueman-manager || blueman-manager")
         }
     }
 
@@ -118,28 +112,23 @@ PanelWindow {
     }
 
     StyledRectangle {
+        color: audioArea.containsMouse ? "#f5c2e7" : "#1e1e2e"
         width: 92
         x: 2334
 
-        color: mouseArea2.containsMouse ? "#f5c2e7" : "#1e1e2e"
-
         BarAudio {
             anchors.centerIn: parent
+            color: audioArea.containsMouse ? "#1e1e2e" : "#f5c2e7"
         }
 
         MouseArea {
-            id: mouseArea2
+            id: audioArea
+
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
             hoverEnabled: true
 
-            onClicked: {
-                runner3.command = ["sh", "-c", "pkill pwvucontrol || pwvucontrol"]
-                runner3.startDetached()
-            }
-        }
-
-        Process {
-            id: runner3
+            onClicked: Runner.exec("pkill pwvucontrol || pwvucontrol")
         }
     }
 

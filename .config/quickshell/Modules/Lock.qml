@@ -1,13 +1,10 @@
 import QtQuick
-import QtQuick.Controls.Fusion
-import Quickshell.Services.Pam
+import QtQuick.Controls
 import Quickshell.Wayland
 
 import "./Common/"
 
 WlSessionLock {
-    id: lock
-
     WlSessionLockSurface {
         Image {
             anchors.fill: parent
@@ -15,22 +12,28 @@ WlSessionLock {
         }
 
         StyledRectangle {
+            height: 48
+            width: 300
             x: 1130
             y: 776
-            width: 300
-            height: 48
 
             TextField {
                 anchors.centerIn: parent
-                y: 200
-                color: "#f5c2e7"
                 background: null
-                cursorDelegate: Rectangle { width: 0; height: 0 }
+                color: "#f5c2e7"
                 echoMode: TextInput.Password
                 focus: true
-                onAccepted: lock.locked = false
+
+                cursorDelegate: Rectangle {
+                    height: 0
+                    width: 0
+                }
+
+                onAccepted: {
+                    pam.unlock(text);
+                    text = "";
+                }
             }
         }
     }
 }
-
