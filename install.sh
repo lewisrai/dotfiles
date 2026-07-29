@@ -10,6 +10,7 @@ packages=(
     'foot'
     'fcitx5-im'
     'fcitx5-mozc'
+    'gnome-keyring'
     'gvfs'
     'gvfs-mtp'
     'helium-browser-bin'
@@ -48,6 +49,7 @@ packages=(
     'thunar' 
     'tree-sitter-cli'
     'ty'
+    'wireguard-tools'
     'xdg-desktop-portal-wlr'
 )
 
@@ -77,6 +79,11 @@ timeout: 0
 quiet: yes
 default_entry: 2
 
+EOF
+
+cat << 'EOF' | sudo tee -i /etc/iwd/main.conf
+[General]
+EnableNetworkConfiguration=true
 EOF
 
 sudo sed -i -e 's|base ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
