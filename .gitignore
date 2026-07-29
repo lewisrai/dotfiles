@@ -48,6 +48,7 @@
 
 !.bash_profile
 !.bashrc
+!.gitconfig
 !.gitignore
 !install.sh
 !timer-stretch.sh

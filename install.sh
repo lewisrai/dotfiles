@@ -1,6 +1,7 @@
 packages=(
     '7zip'
     'asusctl'
+    'biber'
     'biome'
     'blueman'
     'brightnessctl'
@@ -16,7 +17,10 @@ packages=(
     'hypridle'
     'hyprshot'
     'imv'
+    'isoimagewriter'
     'jedi-language-server'
+    'kdenlive'
+    'krita'
     'lazygit'
     'libreoffice-fresh'
     'llama-cpp'
@@ -27,19 +31,21 @@ packages=(
     'network-manager-applet'
     'nvim'
     'nwg-look'
+    'obs-studio'
+    'obsidian'
     'opencode'
     'otf-firamono-nerd'
-    'proton-vpn-gtk-app'
+    'proton-vpn-cli'
     'pwvucontrol'
     'quickshell'
     'qt6ct'
     'rust'
     'rust-analyzer'
     'sbctl'
-    'scx-scheds'
-    'scx-tools'
     'socat'
     'supergfxctl'
+    'texstudio'
+    'texlive-meta'
     'thunar' 
     'tree-sitter-cli'
     'ty'
@@ -67,27 +73,17 @@ EOF
 sudo sed -i -e 's|base ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
 sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet|' -e 's|splash ||' /etc/default/limine
 
-sudo pacman -Rsn cachyos-plymouth-bootanimation cachyos-plymouth-theme plymouth switcheroo-control --noconfirm
-
 sudo pacman -Syu "${packages[@]}" --needed --noconfirm
 
-sudo mkdir -p /usr/local/share/kbd/keymaps/
 sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/share/kbd/keymaps/uk-custom.map.gz
 sudo gzip -d /usr/share/kbd/keymaps/uk-custom.map.gz
 sudo sed -i -e 's|Caps_Lock|Escape|' /usr/share/kbd/keymaps/uk-custom.map
-sudo gzip /usr/share/kbd/keymaps/uk-custom.map.gz
+sudo gzip /usr/share/kbd/keymaps/uk-custom.map
 sudo sed -i -e 's|uk|uk-custom|' /etc/vconsole.conf
 
 asusctl battery limit 80
 asusctl aura effect static --colour f5c2e7
 asusctl aura power keyboard --awake
-
-sudo mkdir /etc/scx_loader/
-
-cat << 'EOF' | sudo tee -i /etc/scx_loader/config.toml
-default_sched = "scx_lavd"
-default_mode = "PowerSave"
-EOF
 
 cat << 'EOF' | sudo tee -i /etc/systemd/system/no-turbo.service
 [Unit]
@@ -115,7 +111,7 @@ ExecStart=/bin/bash -c 'echo auto | tee /sys/bus/usb/devices/3-9/power/control /
 WantedBy=multi-user.target
 EOF
 
-sudo systemctl enable --now no-turbo.service scx_loader.service set-powersave.service supergfxd.service
+sudo systemctl enable --now no-turbo.service set-powersave.service supergfxd.service
 
 sudo sed -i -e 's|#AutoEnable=true|AutoEnable=false|' /etc/bluetooth/main.conf
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf

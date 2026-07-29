@@ -15,21 +15,11 @@ PanelWindow {
     implicitHeight: 52
 
     StyledRectangle {
-        width: 175
+        width: 303
         x: 28
 
         BarActiveTag {
-            anchors.centerIn: parent
-        }
-    }
-
-    StyledRectangle {
-        implicitWidth: tray.implicitWidth + 28
-        x: 217
-
-        BarSystemTray {
-            id: tray
-
+            id: abcd
             anchors.centerIn: parent
         }
     }
@@ -37,7 +27,7 @@ PanelWindow {
     StyledRectangle {
         implicitWidth: client.implicitWidth + 28
         visible: client.text
-        x: 259 + tray.implicitWidth
+        x: 345
 
         BarActiveClient {
             id: client
@@ -58,7 +48,7 @@ PanelWindow {
     StyledRectangle {
         visible: notifications.text
         width: 400
-        x: 1495
+        x: 1520
 
         BarNotifications {
             id: notifications
@@ -73,10 +63,12 @@ PanelWindow {
     }
 
     StyledRectangle {
-        width: 96
-        x: 2044
+        implicitWidth: tray.implicitWidth + 28
+        x: 2112 - tray.implicitWidth
 
-        BarNetwork {
+        BarSystemTray {
+            id: tray
+
             anchors.centerIn: parent
         }
     }

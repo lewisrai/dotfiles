@@ -1,0 +1,7 @@
+[user]
+	name = lewisrai
+	email = 144852757+lewisrai@users.noreply.github.com
+[credential]
+	helper = libsecret
+[init]
+	defaultBranch = main

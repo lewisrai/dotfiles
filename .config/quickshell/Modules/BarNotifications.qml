@@ -4,7 +4,8 @@ import Quickshell.Services.Notifications
 import "./Common/"
 
 StyledText {
-    text: server.trackedNotifications.values.length > 0 ? server.trackedNotifications.values[0].summary + " " + server.trackedNotifications.values[0].body : ""
+    color: server.trackedNotifications.values[0]?.urgency == NotificationUrgency.Critical ? "#f38ba8" : "#f5c2e7"
+    text: server.trackedNotifications.values.length ? server.trackedNotifications.values[0].summary + " " + server.trackedNotifications.values[0].body : ""
 
     NotificationServer {
         id: server
@@ -27,7 +28,7 @@ StyledText {
 
     Timer {
         interval: 4000
-        running: server.trackedNotifications.values.length > 0
+        running: server.trackedNotifications.values.length
 
         onTriggered: server.trackedNotifications.values[0].dismiss()
     }

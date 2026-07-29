@@ -23,7 +23,7 @@ RowLayout {
     }
 
     Repeater {
-        model: 5
+        model: 9
 
         StyledText {
             font.pixelSize: 20

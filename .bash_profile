@@ -1,4 +1,4 @@
-export HISTSIZE=100
+unset HISTFILE
 
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 export QT_QPA_PLATFORM=wayland
