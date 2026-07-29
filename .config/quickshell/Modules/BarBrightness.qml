@@ -30,8 +30,10 @@ StyledText {
                     text = `󰃞 ${level}%`;
                 else if (level < 67)
                     text = `󰃟 ${level}%`;
-                else
+                else if (level < 100)
                     text = `󰃠 ${level}%`;
+                else
+                    text = `󰃠 ~C%`;
             }
         }
     }

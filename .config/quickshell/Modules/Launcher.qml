@@ -104,7 +104,7 @@ FloatingWindow {
                 width: parent.width
 
                 StyledText {
-                    color: index == launcher.selected ? "#f9e2af" : "#f5c2e7"
+                    color: index === launcher.selected ? "#f9e2af" : "#f5c2e7"
                     leftPadding: 4
                     text: modelData
                 }

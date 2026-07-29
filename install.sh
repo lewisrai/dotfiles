@@ -16,6 +16,7 @@ packages=(
     'hunspell-en_gb'
     'hypridle'
     'hyprshot'
+    'impala'
     'imv'
     'isoimagewriter'
     'jedi-language-server'
@@ -28,14 +29,12 @@ packages=(
     'lua-language-server'
     'mango'
     'mpv'
-    'network-manager-applet'
     'nvim'
     'nwg-look'
     'obs-studio'
     'obsidian'
     'opencode'
     'otf-firamono-nerd'
-    'proton-vpn-cli'
     'pwvucontrol'
     'quickshell'
     'qt6ct'
@@ -50,6 +49,16 @@ packages=(
     'tree-sitter-cli'
     'ty'
     'xdg-desktop-portal-wlr'
+)
+
+remove=(
+    'cachyos-plymouth-bootanimation'
+    'cachyos-plymouth-theme'
+    'linux-cachyos-lts'
+    'linux-cachyos-lts-headers'
+    'linux-cachyos-lts-nvidia-open'
+    'plymouth'
+    'switcheroo-control'
 )
 
 rm -rf ~/.*
@@ -73,7 +82,9 @@ EOF
 sudo sed -i -e 's|base ||' -e 's|plymouth ||' /etc/mkinitcpio.conf
 sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet|' -e 's|splash ||' /etc/default/limine
 
-sudo pacman -Syu "${packages[@]}" --needed --noconfirm
+sudo pacman -Rsn "${remove[@]}" --noconfirm
+
+sudo pacman -Syu "${packages[@]}" --noconfirm
 
 sudo cp /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz /usr/share/kbd/keymaps/uk-custom.map.gz
 sudo gzip -d /usr/share/kbd/keymaps/uk-custom.map.gz

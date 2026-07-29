@@ -16,27 +16,23 @@ alias gemma31='llama-server --threads 6 --ctx-size 16384 --parallel 1 --mlock --
 
 alias qmlformat='/usr/lib/qt6/bin/qmlformat -n -S --objects-spacing --functions-spacing'
 
-restart() {
-    pkill "$1" && "$1" & disown
-}
+restart() { pkill "$1"; "$@" & disown; }
 
 timer() {
     case $1 in
-        's') source ~/timer-stretch.sh;;
-        'w') source ~/timer-workout.sh;;
-        *) echo 'invalid'; return 0;;
+        s) source ~/timer-s.sh;;
+        w) source ~/timer-w.sh;;
+        *) return;;
     esac
 
     for action in "${actions[@]}"; do
-        IFS=' '; words=($action); unset IFS
+        set -- $action
 
-        for (( i=words[0]; i>=1; i-- )); do
-            text="$i ${words[@]:1}"
-
-            if [ $i -gt 6 ]; then
-                notify-send -h string:tag:timer "$text"
+        for (( i=$1; i>=1; i-- )); do
+            if (( i > 6 )); then
+                notify-send -h string:tag:timer "$i ${*:2}"
             else
-                notify-send -h string:tag:timer -u critical "$text"
+                notify-send -h string:tag:timer -u critical "$i ${*:2}"
             fi
 
             sleep 1

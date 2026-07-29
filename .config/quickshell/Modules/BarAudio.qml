@@ -11,26 +11,25 @@ StyledText {
     text: {
         const microphoneIcon = this.source?.audio ? this.source.audio.muted ? "󰍭" : "󰍬" : "~";
 
-        var volume = "~~";
-        var volumeIcon = "~";
+        var volumeText = " ~ ~~%";
 
         if (this.sink?.audio) {
-            volume = Math.round(this.sink.audio.volume * 100);
-
-            if (this.sink.audio.muted)
-                volumeIcon = "󰖁";
-            else if (volume < 33)
-                volumeIcon = "";
-            else if (volume < 66)
-                volumeIcon = "";
-            else
-                volumeIcon = "";
+            const volume = Math.round(this.sink.audio.volume * 100);
+            const volumeMute = this.sink.audio.muted;
 
             if (volume < 10)
-                volume = "~" + volume;
+                volumeText = (volumeMute ? " 󰖁 ~" : " 󰕿 ~") + volume + "%";
+            else if (volume < 33)
+                volumeText = (volumeMute ? " 󰖁 " : " 󰕿 ") + volume + "%";
+            else if (volume < 66)
+                volumeText = (volumeMute ? " 󰖁 " : " 󰖀 ") + volume + "%";
+            else if (volume < 100)
+                volumeText = (volumeMute ? " 󰖁 " : " 󰕾 ") + volume + "%";
+            else
+                volumeText = (volumeMute ? " 󰖁 " : " 󰕾 ") + "~C%";
         }
 
-        return microphoneIcon + " " + volumeIcon + " " + volume + "%";
+        return microphoneIcon + volumeText;
     }
 
     PwObjectTracker {

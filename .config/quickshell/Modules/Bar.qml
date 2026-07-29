@@ -48,7 +48,7 @@ PanelWindow {
     StyledRectangle {
         visible: notifications.text
         width: 400
-        x: 1520
+        x: 1483
 
         BarNotifications {
             id: notifications

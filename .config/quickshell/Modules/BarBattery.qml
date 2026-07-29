@@ -18,27 +18,28 @@ StyledText {
     }
 
     text: {
-        var batteryIcon = "";
-        var batteryLevel = Math.round((this.battery?.percentage ?? 0) * 100);
+        var batteryText = " ~ ~~%";
 
-        if (this.battery?.state === UPowerDeviceState.Charging)
-            batteryIcon = "󰂄";
-        else if (batteryLevel < 10)
-            batteryIcon = "󰂎";
-        else if (batteryLevel < 30)
-            batteryIcon = "󰁻";
-        else if (batteryLevel < 50)
-            batteryIcon = "󰁽";
-        else if (batteryLevel < 70)
-            batteryIcon = "󰁿";
-        else if (batteryLevel < 90)
-            batteryIcon = "󰂁";
-        else
-            batteryIcon = "󰁹";
+        if (this.battery) {
+            const batteryLevel = Math.round((this.battery.percentage * 100));
+            const charging = this.battery.state === UPowerDeviceState.Charging;
 
-        if (batteryLevel < 10)
-            batteryLevel = "~" + batteryLevel;
+            if (batteryLevel < 10)
+                batteryText = (charging ? " 󰂄 ~" : " 󰂎 ~") + batteryLevel + "%";
+            else if (batteryLevel < 30)
+                batteryText = (charging ? " 󰂄 " : " 󰁻 ") + batteryLevel + "%";
+            else if (batteryLevel < 50)
+                batteryText = (charging ? " 󰂄 " : " 󰁽 ") + batteryLevel + "%";
+            else if (batteryLevel < 70)
+                batteryText = (charging ? " 󰂄 " : " 󰁿 ") + batteryLevel + "%";
+            else if (batteryLevel < 90)
+                batteryText = (charging ? " 󰂄 " : " 󰂁 ") + batteryLevel + "%";
+            else if (batteryLevel < 100)
+                batteryText = (charging ? " 󰂄 " : " 󰁹 ") + batteryLevel + "%";
+            else
+                batteryText = (charging ? " 󰂄 " : " 󰁹 ") + "~C%";
+        }
 
-        return powerProfileIcon + " " + batteryIcon + " " + batteryLevel + "%";
+        return powerProfileIcon + batteryText;
     }
 }
