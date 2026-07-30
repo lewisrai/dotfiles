@@ -31,8 +31,6 @@
 !.config/quickshell/
 !.config/quickshell/**/*
 !.config/easyeffectsrc
-!.config/user-dirs.dirs
-!.config/user-dirs.locale
 
 !.icons/
 !.icons/**/*
@@ -45,6 +43,10 @@
 !.local/share/nwg-look/*
 !.local/share/themes/
 !.local/share/themes/**/*
+
+!projects/
+!projects/xorg-xwayland-dummy/
+!projects/xorg-xwayland-dummy/PKGBUILD
 
 !.bash_profile
 !.bashrc

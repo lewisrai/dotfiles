@@ -20,6 +20,7 @@ PanelWindow {
 
         BarActiveTag {
             id: abcd
+
             anchors.centerIn: parent
         }
     }
@@ -64,12 +65,33 @@ PanelWindow {
 
     StyledRectangle {
         implicitWidth: tray.implicitWidth + 28
-        x: 2112 - tray.implicitWidth
+        x: 2006 - tray.implicitWidth
 
         BarSystemTray {
             id: tray
 
             anchors.centerIn: parent
+        }
+    }
+
+    StyledRectangle {
+        color: networkArea.containsMouse ? "#f5c2e7" : "#1e1e2e"
+        width: 92
+        x: 2048
+
+        BarNetwork {
+            anchors.centerIn: parent
+            color: networkArea.containsMouse ? "#1e1e2e" : "#f5c2e7"
+        }
+
+        MouseArea {
+            id: networkArea
+
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+            hoverEnabled: true
+
+            onClicked: Runner.exec("pkill impala || foot --app-id=impala impala ")
         }
     }
 

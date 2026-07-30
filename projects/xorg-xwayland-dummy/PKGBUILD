@@ -1,0 +1,7 @@
+pkgname='xorg-xwayland'
+pkgver=999
+pkgrel=1
+arch=('any')
+provides=('xorg-server-xwayland')
+conflicts=('xorg-server-xwayland')
+replaces=('xorg-server-xwayland')

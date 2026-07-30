@@ -46,7 +46,7 @@ FloatingWindow {
 
         stdout: SplitParser {
             onRead: data => {
-                items.push(data);
+                launcher.items.push(data);
             }
         }
 
