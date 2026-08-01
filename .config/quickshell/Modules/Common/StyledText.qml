@@ -2,6 +2,7 @@ import QtQuick
 
 Text {
     color: "#f5c2e7"
-    font.family: "FiraMono Nerd Font"
+    font.bold: true
+    font.family: "FiraMonoNerdFont"
     font.pixelSize: 16
 }

@@ -11,6 +11,10 @@
 !.config/fcitx5/*
 !.config/fcitx5/conf/
 !.config/fcitx5/conf/classicui.conf
+!.config/gtk-3.0/
+!.config/gtk-3.0/*
+!.config/gtk-4.0/
+!.config/gtk-4.0/*
 !.config/hypr/
 !.config/hypr/*
 !.config/imv/
@@ -25,9 +29,7 @@
 !.config/nvim/*
 !.config/nwg-look/
 !.config/nwg-look/*
-!.config/qt6ct/
-!.config/qt6ct/colors/
-!.config/qt6ct/colors/*
+!.config/qt6ct/**/*
 !.config/quickshell/
 !.config/quickshell/**/*
 !.config/easyeffectsrc
