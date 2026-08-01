@@ -2,6 +2,7 @@
 	name = lewisrai
 	email = 144852757+lewisrai@users.noreply.github.com
 [credential]
-	helper = libsecret
+	helper = cache --timeout 21600
+	helper = oauth
 [init]
 	defaultBranch = main

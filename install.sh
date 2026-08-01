@@ -10,7 +10,7 @@ packages=(
     'foot'
     'fcitx5-im'
     'fcitx5-mozc'
-    'gnome-keyring'
+    'git-credential-oauth'
     'gvfs'
     'gvfs-mtp'
     'helium-browser-bin'
@@ -25,6 +25,8 @@ packages=(
     'krita'
     'lazygit'
     'libreoffice-fresh'
+    'linux-firmware-intel'
+    'linux-firmware-nvidia'
     'llama-cpp'
     'lsp-plugins-lv2'
     'lua-language-server'
@@ -138,9 +140,12 @@ sudo systemctl enable --now no-turbo.service set-powersave.service supergfxd.ser
 sudo sed -i -e 's|#AutoEnable=true|AutoEnable=false|' /etc/bluetooth/main.conf
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
 
+sudo systemctl mask nvidia-powerd.service
 sudo systemctl restart supergfxd.service
 
 sudo sbctl create-keys
 sudo sbctl enroll-keys --microsoft
 sudo limine-enroll-config
 sudo limine-update
+
+echo configure DNS, limine
