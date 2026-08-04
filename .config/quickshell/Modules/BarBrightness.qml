@@ -22,7 +22,7 @@ StyledText {
 
         stdout: SplitParser {
             onRead: data => {
-                const level = Number(data) * 100 / brightness.max;
+                const level = Math.round(Number(data) * 100 / brightness.max);
 
                 if (level < 10)
                     text = `󰃞 ~${level}%`;

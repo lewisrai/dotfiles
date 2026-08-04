@@ -21,7 +21,7 @@ StyledText {
         var batteryText = " ~ ~~%";
 
         if (this.battery) {
-            const batteryLevel = Math.round((this.battery.percentage * 100));
+            const batteryLevel = Math.round(this.battery.percentage * 100);
             const charging = this.battery.state === UPowerDeviceState.Charging;
 
             if (batteryLevel < 10)
