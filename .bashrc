@@ -12,7 +12,7 @@ alias bun='bun --bun'
 alias bunx='bunx --bun'
 alias snvim='sudo nvim --clean'
 
-alias gemma31='llama-server --threads 6 --ctx-size 16384 --parallel 1 --mlock --no-mmap --model ~/documents/gemma31 --temp 1.0 --top-k 64 --top-p 0.95 --checkpoint-every-n-tokens -1 --cache-ram 0'
+alias gemma4='llama-server --threads 6 --ctx-size 16384 --flash-attn on --load-mode mlock --model ~/documents/gemma4-31b-it-qat-unsloth.gguf --temp 1.0 --top-k 64 --top-p 0.95 --parallel 1 --ctx-checkpoints 0 --cache-ram 0 --no-cache-idle-slots --no-mmproj --cors-origins localhost --spec-draft-model ~/documents/gemma4-31b-it-mtp-q4_0-qat-unsloth.gguf --spec-type draft-mtp --spec-draft-n-max 2'
 
 alias qmlformat='/usr/lib/qt6/bin/qmlformat -n -S --objects-spacing --functions-spacing'
 

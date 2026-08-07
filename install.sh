@@ -152,7 +152,7 @@ asusctl aura power keyboard --awake
 
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
 
-sudo systemctl enable --now no-turbo.service set-powersave.service supergfxd.service
+sudo systemctl enable --now asusd.service asus-shutdown.service no-turbo.service set-powersave.service supergfxd.service
 sudo systemctl restart supergfxd.service
 
 sudo sbctl create-keys
