@@ -83,6 +83,9 @@ FloatingWindow {
 
             background: null
             focus: true
+            font.bold: true
+            font.family: "FiraMonoNerdFont"
+            font.pixelSize: 16
             width: parent.width
 
             cursorDelegate: Rectangle {

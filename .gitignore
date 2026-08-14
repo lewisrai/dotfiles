@@ -1,8 +1,6 @@
 **/*
 
 !.config/
-!.config/Proton/
-!.config/Proton/**/*
 !.config/btop/
 !.config/btop/**/*
 !.config/foot/
