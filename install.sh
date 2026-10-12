@@ -11,6 +11,7 @@ install=(
     'foot'
     'fcitx5-im'
     'fcitx5-mozc'
+    'ggml-vulkan'
     'git-credential-oauth'
     'gvfs'
     'gvfs-mtp'
