@@ -48,8 +48,6 @@ install=(
     'rust'
     'rust-analyzer'
     'sbctl'
-    'socat'
-    'supergfxctl'
     'texstudio'
     'texlive-meta'
     'thunar' 
@@ -106,6 +104,21 @@ ExecStart=/bin/bash -c 'echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo'
 WantedBy=multi-user.target
 EOF
 
+cat << 'EOF' | sudo tee -i /etc/systemd/system/persist-dgpu-disable.service
+[Unit]
+Description=Persist DGPU Disable
+Before=display-manager.service
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/laptop/.config/mango/persist-dgpu-disable.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 cat << 'EOF' | sudo tee -i /etc/systemd/system/set-powersave.service
 [Unit]
 Description=set-powersave
@@ -153,8 +166,7 @@ asusctl aura power keyboard --awake
 
 sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
 
-sudo systemctl enable --now asusd.service asus-shutdown.service no-turbo.service set-powersave.service supergfxd.service
-sudo systemctl restart supergfxd.service
+sudo systemctl enable --now asusd.service asus-shutdown.service no-turbo.service set-powersave.service
 
 sudo sbctl create-keys
 sudo sbctl enroll-keys --microsoft

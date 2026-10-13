@@ -91,7 +91,7 @@ PanelWindow {
             cursorShape: Qt.PointingHandCursor
             hoverEnabled: true
 
-            onClicked: Runner.exec("pkill impala || foot --app-id=impala impala ")
+            onClicked: Runner.exec("pkill impala || foot --app-id=impala impala")
         }
     }
 

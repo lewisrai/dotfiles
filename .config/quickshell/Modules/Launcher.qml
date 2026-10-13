@@ -27,11 +27,6 @@ FloatingWindow {
         selected = 0;
     }
 
-    function open() {
-        visible = true;
-        get.running = true;
-    }
-
     color: "#1e1e2e"
     implicitHeight: 212
     implicitWidth: 424
@@ -51,6 +46,15 @@ FloatingWindow {
         }
 
         onRunningChanged: launcher.changed()
+    }
+
+    IpcHandler {
+        target: "launcher"
+
+        function open(): void {
+            visible = true;
+            get.running = true;
+        }
     }
 
     ColumnLayout {
