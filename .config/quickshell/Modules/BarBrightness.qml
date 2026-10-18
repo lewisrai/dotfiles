@@ -3,49 +3,54 @@ import Quickshell.Io
 import "./Common/"
 
 StyledText {
-    id: brightness
-
-    property int max: 1
-
     FileView {
-        path: "/sys/class/backlight/intel_backlight/brightness"
+        id: brightness
+
         watchChanges: true
 
-        onFileChanged: update.running = true
+        onFileChanged: this.reload()
+    }
+
+    FileView {
+        id: max
+
+        watchChanges: false
     }
 
     Process {
-        id: update
+        id: path
 
-        command: ["brightnessctl", "get"]
+        property bool set: false
+
+        command: ["ls", "/sys/class/backlight/"]
         running: true
 
         stdout: SplitParser {
             onRead: data => {
-                const level = Math.round(Number(data) * 100 / brightness.max);
+                if (path.set) {
+                    return
+                }
 
-                if (level < 10)
-                    text = `󰃞 ~${level}%`;
-                else if (level < 34)
-                    text = `󰃞 ${level}%`;
-                else if (level < 67)
-                    text = `󰃟 ${level}%`;
-                else if (level < 100)
-                    text = `󰃠 ${level}%`;
-                else
-                    text = `󰃠 ~C%`;
+                path.set = true
+
+                brightness.path = "/sys/class/backlight/" + data + "/brightness"
+                max.path = "/sys/class/backlight/" + data + "/max_brightness"
             }
         }
     }
 
-    Process {
-        command: ["brightnessctl", "max"]
-        running: true
+    text: {
+        const level = Math.round(Number(brightness.text().trim()) * 100 / Number(max.text().trim()));
 
-        stdout: SplitParser {
-            onRead: data => {
-                brightness.max = Number(data);
-            }
-        }
+        if (level < 10)
+            return `󰃞 ~${level}%`;
+        else if (level < 34)
+            return `󰃞 ${level}%`;
+        else if (level < 67)
+            return `󰃟 ${level}%`;
+        else if (level < 100)
+            return `󰃠 ${level}%`;
+        else
+            return `󰃠 ~C%`;
     }
 }
