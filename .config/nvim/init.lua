@@ -15,7 +15,6 @@ vim.g.loaded_tarPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_zipPlugin = 1
 
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -59,13 +58,18 @@ vim.keymap.set("n", "<leader>l", "<cmd>terminal lazygit<CR>")
 function Change_CWD(path)
     vim.api.nvim_exec2("wa!", {})
     vim.api.nvim_exec2("%bd!", {})
-    vim.lsp.stop_client(vim.lsp.get_clients())
+
+    for _, client in ipairs(vim.lsp.get_clients()) do
+        client:stop()
+    end
+
     vim.api.nvim_exec2("cd " .. path, {})
     vim.api.nvim_exec2("e .", {})
 end
 
-vim.keymap.set("n", "<leader>mc", function() Change_CWD("~/.config/nvim") end)
-vim.keymap.set("n", "<leader>mp", function() Change_CWD("~") end)
+vim.keymap.set("n", "<leader>pp", function() Change_CWD("~/projects/") end)
+vim.keymap.set("n", "<leader>ph", function() Change_CWD("~/") end)
+vim.keymap.set("n", "<leader>pc", function() Change_CWD("~/.config/nvim/") end)
 
 function Center_Cursor(insert_mode)
     vim.diagnostic.config({ virtual_lines = false })
@@ -100,17 +104,18 @@ vim.api.nvim_exec2("autocmd TextYankPost * lua vim.highlight.on_yank()", {})
 vim.cmd.packadd("nvim.undotree")
 vim.keymap.set("n", "<leader>u", require("undotree").open)
 
-
-vim.api.nvim_create_autocmd("PackChanged", { callback = function(e)
-    if e.data.spec.name == 'nvim-treesitter' and e.data.kind == 'update' then
-        vim.cmd("TSUpdate")
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(e)
+        if e.data.spec.name == 'nvim-treesitter' and e.data.kind == 'update' then
+            vim.cmd("TSUpdate")
+        end
     end
-end })
+})
 
 vim.pack.add({
     {
         src = "https://github.com/saghen/blink.cmp",
-        version = "v1.10.1",
+        version = "v1.10.2",
     },
     "https://github.com/catppuccin/nvim",
     "https://github.com/MunifTanjim/nui.nvim",
@@ -140,6 +145,7 @@ require("noice").setup({
         message = { enabled = false },
     },
 })
+
 require("snacks").setup({
     bigfile = {},
     notifier = {},
@@ -150,7 +156,8 @@ vim.keymap.set("n", "<leader>f", Snacks.picker.files)
 vim.keymap.set("n", "<leader>g", Snacks.picker.grep)
 vim.keymap.set("n", "<leader>b", Snacks.picker.buffers)
 
-vim.lsp.config("luals", {
+vim.lsp.config("lua_ls", {
+    root_markers = { "nvim-pack-lock.json" },
     settings = {
         Lua = {
             runtime = {
@@ -169,7 +176,7 @@ vim.lsp.config("luals", {
 vim.lsp.enable("biome")
 vim.lsp.enable("clangd")
 vim.lsp.enable("jedi_language_server")
-vim.lsp.enable("luals")
+vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("ty")
 
