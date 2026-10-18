@@ -65,6 +65,7 @@ remove=(
     'linux-cachyos-lts-nvidia-open'
     'linux-firmware'
     'plymouth'
+    'power-profiles-daemon'
     'switcheroo-control'
 )
 

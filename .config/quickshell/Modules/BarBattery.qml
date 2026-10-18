@@ -1,3 +1,4 @@
+import Quickshell.Io
 import Quickshell.Services.UPower
 
 import "./Common/"
@@ -5,16 +6,25 @@ import "./Common/"
 StyledText {
     readonly property UPowerDevice battery: UPower.displayDevice
     readonly property string powerProfileIcon: {
-        switch (PowerProfiles.profile) {
-        case PowerProfile.PowerSaver:
+        switch (profile.text().trim()) {
+        case "quiet":
             return "";
-        case PowerProfile.Balanced:
+        case "balanced":
             return "";
-        case PowerProfile.Performance:
+        case "performance":
             return "󱪂";
         default:
             return "~";
         }
+    }
+
+    FileView {
+        id: profile
+
+        path: "/sys/firmware/acpi/platform_profile"
+        watchChanges: true
+
+        onFileChanged: this.reload()
     }
 
     text: {
