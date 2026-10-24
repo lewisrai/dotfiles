@@ -63,6 +63,7 @@ remove=(
     'linux-cachyos-lts-headers'
     'linux-cachyos-lts-nvidia-open'
     'linux-firmware'
+    'networkmanager'
     'plymouth'
     'power-profiles-daemon'
     'switcheroo-control'
@@ -153,18 +154,20 @@ sudo sh -c 'echo ENABLE_UKI=yes >> /etc/default/limine'
 mkdir ~/desktop/ ~/documents/ ~/downloads/ ~/music/ ~/pictures/ ~/public/ ~/templates/ ~/videos/
 
 sudo pacman -Rsn "${remove[@]}" --noconfirm
+sudo pacman -Rsn $(comm -12 <(pacman -Qq | sort) <(pacman -Slq multilib | sort)) --noconfirm
+
+sudo sed -i -e '|[multilib]|#[multilib]|' -e '|Include = /etc/pacman.d/mirrorlist|#Include = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
 
 cd ~/projects/xorg-xwayland-dummy/
 makepkg -si
 cd ~/
 
-sudo pacman -Syu "${install[@]}" --noconfirm
+sudo pacman -Syyu "${install[@]}" --noconfirm
+sudo pacman -Scc --noconfirm
 
 asusctl battery limit 80
 asusctl aura effect static --colour f5c2e7
 asusctl aura power keyboard --awake
-
-sudo sed -i -e 's|Hybrid|Integrated|' -e 's|None|Asus|' -e 's|reboot": false|reboot": true|' /etc/supergfxd.conf
 
 sudo systemctl enable --now asusd.service asus-shutdown.service no-turbo.service set-powersave.service
 
