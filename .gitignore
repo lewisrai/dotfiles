@@ -20,7 +20,7 @@
 !.config/lazygit/
 !.config/lazygit/*
 !.config/mango/
-!.config/mango/*
+!.config/mango/config.toml
 !.config/mpv/
 !.config/mpv/*
 !.config/nvim/

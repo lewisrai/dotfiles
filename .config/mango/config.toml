@@ -1,0 +1,148 @@
+[global]
+exec_once = ["fcitx5", "hypridle -q", "nm-applet", "quickshell"]
+
+xkb_rules_layout = "gb"
+xkb_rules_options = "caps:escape"
+mouse_accel_profile = 0
+trackpad_natural_scrolling = 1
+
+auto_reload_config = 0
+drag_tile_small = 0
+drag_corner = 0
+drag_warp_cursor = 0
+
+border_px = 2
+gap_inner_horizontal = 8
+gap_inner_vertical = 8
+gap_outer_horizontal = 14
+gap_outer_vertical = 14
+root_color = 0x313244ff
+border_color = 0x313244ff
+focus_color = 0xf5c2e7ff
+global_color = 0xf5c2e7ff
+cursor_size = 24
+cursor_theme = "catppuccin-mocha-dark-cursors"
+
+blur = 0
+shadows = 0
+border_radius = 6
+
+animations = 0
+
+new_is_master = 0
+default_master_factor = 0.4946
+
+[[rule.monitor_rule]]
+name = "^eDP-1$"
+width = 2560
+height = 1600
+refresh = 60
+x = 0
+y = 0
+scale = 1
+vrr = 0
+hdr = 0
+rr = 0
+custom = 0
+disable = 0
+
+[[rule.tag_rule]]
+id = "*"
+layout_name = "tile"
+
+[[rule.window_rule]]
+app_id = "^blueman-manager$"
+is_floating = 1
+is_global = 1
+width = 600
+height = 480
+offset_x = 99
+offset_y = -98
+
+[[rule.window_rule]]
+app_id = "^com.saivert.pwvucontrol$"
+is_floating = 1
+is_global = 1
+width = 600
+height = 480
+offset_x = 99
+offset_y = -98
+
+[[rule.window_rule]]
+app_id = "^impala$"
+is_floating = 1
+is_global = 1
+width = 600
+height = 480
+offset_x = 99
+offset_y = -98
+
+[[rule.window_rule]]
+app_id = "^org.quickshell$"
+title = "^launcher|polkit$"
+is_floating = 1
+
+[bind.default]
+"SUPER+q" = "killclient"
+"SUPER+w" = "spawn,hyprshot -m window"
+"SUPER+e" = "spawn,strata"
+"SUPER+r" = "spawn,hyprshot -m region"
+
+"SUPER+f" = "togglefullscreen"
+"SUPER+RETURN" = "spawn,foot"
+
+"SUPER+b" = "spawn,helium-browser"
+"SUPER+n" = "spawn,foot nvim"
+"SUPER+m" = "zoom"
+
+"SUPER+SPACE" = "spawn_shell,qs ipc call launcher open"
+
+"SUPER+1" = "view,1"
+"SUPER+2" = "view,2"
+"SUPER+3" = "view,3"
+"SUPER+4" = "view,4"
+"SUPER+5" = "view,5"
+"SUPER+6" = "view,6"
+"SUPER+7" = "view,7"
+"SUPER+8" = "view,8"
+"SUPER+9" = "view,9"
+
+"SUPER+h" = "focusdir,left"
+"SUPER+j" = "focusdir,down"
+"SUPER+k" = "focusdir,up"
+"SUPER+l" = "focusdir,right"
+
+"SUPER+SHIFT+1" = "tag,1"
+"SUPER+SHIFT+2" = "tag,2"
+"SUPER+SHIFT+3" = "tag,3"
+"SUPER+SHIFT+4" = "tag,4"
+"SUPER+SHIFT+5" = "tag,5"
+"SUPER+SHIFT+6" = "tag,6"
+"SUPER+SHIFT+7" = "tag,7"
+"SUPER+SHIFT+8" = "tag,8"
+"SUPER+SHIFT+9" = "tag,9"
+
+"SUPER+SHIFT+l" = "spawn,loginctl lock-session"
+
+[bind.default.lock]
+"SUPER+SHIFT+r" = "spawn_shell,asusctl profile set quiet; asusctl armoury set panel_overdrive 0; systemctl reboot"
+"SUPER+SHIFT+o" = "spawn_shell,asusctl profile set quiet; asusctl armoury set panel_overdrive 0; loginctl terminate-session ''"
+"SUPER+SHIFT+p" = "spawn_shell,asusctl profile set quiet; asusctl armoury set panel_overdrive 0; systemctl poweroff"
+
+"SUPER+SHIFT+s" = "spawn_shell,systemd-ac-power || systemctl suspend"
+"SUPER+SHIFT+d" = "spawn,brightnessctl set 1%"
+
+"SUPER+SHIFT+v" = "spawn_shell,if wg show; then pkexec sh -c 'wg-quick up laptop'; else pkexec sh -c 'wg-quick down laptop'; fi"
+"SUPER+SHIFT+b" = "spawn,brightnessctl set 50%"
+
+"XF86AudioLowerVolume" = "spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+"XF86AudioRaiseVolume" = "spawn,wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+"XF86AudioMicMute" = "spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+"XF86AudioMute" = "spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+"XF86KbdBrightnessDown" = "spawn,asusctl leds prev"
+"XF86KbdBrightnessUp" = "spawn,asusctl leds next"
+"XF86Launch1" = "spawn,~/.config/mango/toggle-game-mode.sh"
+"XF86Launch3" = "spawn_shell,asusctl aura power keyboard --awake"
+"XF86Launch4" = "spawn_shell,asusctl profile next"
+"XF86MonBrightnessDown" = "spawn,brightnessctl set 5%-"
+"XF86MonBrightnessUp" = "spawn,brightnessctl set 5%+"
