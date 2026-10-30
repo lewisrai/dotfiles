@@ -13,6 +13,7 @@ install=(
     'fcitx5-mozc'
     'ggml-vulkan'
     'git-credential-oauth'
+    'gtksourceview5'
     'gvfs'
     'gvfs-mtp'
     'helium-browser-bin'
@@ -41,6 +42,7 @@ install=(
     'obsidian'
     'opencode'
     'otf-firamono-nerd'
+    'poppler-glib'
     'pwvucontrol'
     'quickshell'
     'qt6ct'
@@ -49,7 +51,6 @@ install=(
     'sbctl'
     'texstudio'
     'texlive-meta'
-    'thunar' 
     'tree-sitter-cli'
     'ty'
     'wireguard-tools'
@@ -69,18 +70,7 @@ remove=(
     'switcheroo-control'
 )
 
-cat << 'EOF' | sudo tee -i /boot/limine.conf
-term_palette: 1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
-term_palette_bright: 585b70;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4
-term_background: 1e1e2e
-term_background_bright: 585b70
-term_foreground: cdd6f4
-term_foreground_bright: cdd6f4
-timeout: 0
-quiet: yes
-default_entry: 2
-
-EOF
+# systemd-boot config
 
 cat << 'EOF' | sudo tee -i /etc/iwd/main.conf
 [General]
@@ -113,7 +103,7 @@ After=systemd-modules-load.service
 
 [Service]
 Type=oneshot
-ExecStart=/home/laptop/.config/mango/persist-dgpu-disable.sh
+ExecStart=/home/laptop/persist-dgpu-disable.sh
 RemainAfterExit=yes
 
 [Install]
@@ -141,11 +131,11 @@ sudo sed -i -e 's|uk|uk-custom|' /etc/vconsole.conf
 
 sudo systemctl mask nvidia-powerd.service
 
-sudo touch /usr/lib/firmware/qat_6xxx.bin
+#sudo touch /usr/lib/firmware/qat_6xxx.bin
 
 sudo sed -i -e 's|#AutoEnable=true|AutoEnable=false|' /etc/bluetooth/main.conf
-sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 kexec_load_disabled rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet|' -e 's|splash ||' /etc/default/limine
-sudo sed -i -e 's|, *lts, *fallback, *Snapshots||' /etc/default/limine
+#sudo sed -i -e 's|"quiet|"vt.default_red=30,243,166,249,137,203,137,205,30,243,166,249,137,203,137,205 vt.default_grn=30,139,227,226,180,166,220,214,30,139,227,226,180,166,220,214 vt.default_blu=46,168,161,175,250,247,235,244,46,168,161,175,250,247,235,244 vt.cur_default=0x641517 i915.force_probe=!46a6 xe.force_probe=46a6 ipv6.disable=1 kexec_load_disabled rcutree.enable_rcu_lazy=1 split_lock_detect=off systemd.zram=0 quiet|' -e 's|splash ||' /etc/default/limine
+#sudo sed -i -e 's|, *lts, *fallback, *Snapshots||' /etc/default/limine
 sudo sed -i -e 's|plymouth ||' /etc/mkinitcpio.conf
 sed -i -e 's|#DNS=|DNS=9.9.9.9|' -e 's|#FallbackDNS.*|FallbackDNS=149.112.112.112|' /etc/systemd/resolved.conf
 
@@ -173,5 +163,4 @@ sudo systemctl enable --now asusd.service asus-shutdown.service no-turbo.service
 
 sudo sbctl create-keys
 sudo sbctl enroll-keys --microsoft
-sudo limine-enroll-config
-sudo limine-update
+sudo sbctl-batch-sign

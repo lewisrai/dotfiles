@@ -30,6 +30,8 @@
 !.config/qt6ct/**/*
 !.config/quickshell/
 !.config/quickshell/**/*
+!.config/strata/
+!.config/strata/settings.toml
 !.config/easyeffectsrc
 
 !.icons/
