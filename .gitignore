@@ -52,7 +52,10 @@
 !.bashrc
 !.gitconfig
 !.gitignore
+!gpu-switch.sh
 !install.sh
+!persist-dgpu-disable.sh
 !timer-s.sh
 !timer-w.sh
+!toggle-game-mode.sh
 !typioca
