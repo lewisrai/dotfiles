@@ -18,26 +18,4 @@ alias qmlformat='/usr/lib/qt6/bin/qmlformat -n -S --objects-spacing --functions-
 
 restart() { pkill "$1"; "$@" & disown; }
 
-timer() {
-    case $1 in
-        s) source ~/timer-s.sh;;
-        w) source ~/timer-w.sh;;
-        *) return;;
-    esac
-
-    for action in "${actions[@]}"; do
-        set -- $action
-
-        for (( i=$1; i>=1; i-- )); do
-            if (( i > 6 )); then
-                notify-send -h string:tag:timer "$i ${*:2}"
-            else
-                notify-send -h string:tag:timer -u critical "$i ${*:2}"
-            fi
-
-            sleep 1
-        done
-    done
-}
-
 PS1='\[\e[1;35m\][\u@\h \W]\$\[\e[m\] '
