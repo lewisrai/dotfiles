@@ -13,13 +13,6 @@ Scope {
 
         property string password: ""
 
-        function unlock(password) {
-            if (!password)
-                return;
-            this.password = password;
-            this.start();
-        }
-
         onCompleted: result => {
             this.password = "";
 
@@ -31,11 +24,11 @@ Scope {
     }
 
     IpcHandler {
-        target: "lock"
-
         function lock(): void {
             lock.locked = true;
         }
+
+        target: "lock"
     }
 
     WlSessionLock {
@@ -68,8 +61,11 @@ Scope {
                     }
 
                     onAccepted: {
-                        pam.unlock(text);
-                        this.clear();
+                        if (this.text) {
+                            pam.password = this.text;
+                            pam.start();
+                            this.text.clear();
+                        }
                     }
                 }
             }

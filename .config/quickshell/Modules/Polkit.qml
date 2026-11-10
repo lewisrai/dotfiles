@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Polkit
 import Quickshell.Wayland
@@ -9,8 +8,8 @@ import "./Common/"
 
 FloatingWindow {
     color: "#1e1e2e"
-    implicitHeight: 212
-    implicitWidth: 424
+    implicitHeight: 196
+    implicitWidth: 396
     title: "polkit"
     visible: agent.flow
 
@@ -18,35 +17,31 @@ FloatingWindow {
         id: agent
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 14
-
-        Keys.onPressed: function (event) {
-            if (event.key === Qt.Key_Escape) {
-                agent.flow.cancelAuthenticationRequest();
-                password.clear();
-            }
-        }
+    Rectangle {
+        color: "#1e1e2e"
+        height: 14
+        width: 380
+        x: 8
+        y: 8
 
         StyledText {
-            Layout.fillWidth: true
-            font.pixelSize: 20
-            horizontalAlignment: Text.AlignHCenter
-            text: "Polkit"
-        }
-
-        StyledText {
-            Layout.fillWidth: true
+            anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             text: agent.flow ? agent.flow.message : ""
             wrapMode: Text.WordWrap
         }
+    }
+
+    StyledRectangle {
+        height: 48
+        width: 400
+        x: -2
+        y: 150
 
         TextField {
             id: password
 
-            Layout.alignment: Qt.AlignHCenter
+            anchors.centerIn: parent
             background: null
             color: "#f5c2e7"
             echoMode: TextInput.Password
@@ -59,10 +54,12 @@ FloatingWindow {
                 width: 0
             }
 
-            onAccepted: {
-                agent.flow.submit(this.text);
-                this.clear();
+            Keys.onPressed: function (event) {
+                if (event.key === Qt.Key_Escape) {
+                    agent.flow.cancelAuthenticationRequest();
+                }
             }
+            onAccepted: agent.flow.submit(this.text)
         }
     }
 }

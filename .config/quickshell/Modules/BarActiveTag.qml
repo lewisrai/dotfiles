@@ -7,7 +7,7 @@ import "./Common/"
 RowLayout {
     id: tag
 
-    property int activeTag: 1
+    property int activeTag: 0
 
     spacing: 14
 
@@ -17,7 +17,7 @@ RowLayout {
 
         stdout: SplitParser {
             onRead: data => {
-                tag.activeTag = JSON.parse(data).tags.find(t => t.is_active).index;
+                tag.activeTag = JSON.parse(data).tags.find(t => t.is_active).index - 1;
             }
         }
     }
@@ -27,7 +27,7 @@ RowLayout {
 
         StyledText {
             font.pixelSize: 20
-            text: index + 1 === tag.activeTag ? "" : ""
+            text: index === tag.activeTag ? "" : ""
         }
     }
 }

@@ -4,10 +4,10 @@ import Quickshell.Services.Notifications
 import "./Common/"
 
 StyledText {
-    property alias all: server.trackedNotifications
+    readonly property Notification current: server.trackedNotifications.values[0] ?? null
 
-    color: all.values[0]?.urgency === NotificationUrgency.Critical ? "#f38ba8" : "#f5c2e7"
-    text: all.values.length ? all.values[0].summary + " " + all.values[0].body : ""
+    color: current?.urgency === NotificationUrgency.Critical ? "#f38ba8" : "#f5c2e7"
+    text: current ? current.summary + " " + current.body : ""
 
     NotificationServer {
         id: server
@@ -16,10 +16,7 @@ StyledText {
             const tag = notification.hints["tag"];
 
             if (tag) {
-                for (const tracked of all.values) {
-                    if (tracked.hints["tag"] === tag)
-                        tracked.dismiss();
-                }
+                this.trackedNotifications.values.find(n => n.hints["tag"] === tag)?.dismiss();
             }
 
             notification.tracked = true;
@@ -28,8 +25,8 @@ StyledText {
 
     Timer {
         interval: 4000
-        running: all.values.length
+        running: server.trackedNotifications.values.length
 
-        onTriggered: all.values[0].dismiss()
+        onTriggered: server.trackedNotifications.values[0].dismiss()
     }
 }

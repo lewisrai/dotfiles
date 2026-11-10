@@ -5,6 +5,16 @@ import "./Common/"
 
 StyledText {
     readonly property UPowerDevice battery: UPower.displayDevice
+    readonly property string batteryText: {
+        if (!this.battery)
+            return " ~ ~~%";
+
+        const charge = Math.round(this.battery.percentage * 100);
+        const icon = this.battery.state === UPowerDeviceState.Charging ? " 󰂄 " : charge < 10 ? " 󰂎 " : charge < 30 ? " 󰁻 " : charge < 50 ? " 󰁽 " : charge < 70 ? " 󰁿 " : charge < 90 ? " 󰂁 " : " 󰁹 ";
+        const text = charge < 10 ? "~" + charge + "%" : charge < 100 ? charge + "%" : "~C%";
+
+        return icon + text;
+    }
     readonly property string powerProfileIcon: {
         switch (profile.text().trim()) {
         case "quiet":
@@ -18,6 +28,8 @@ StyledText {
         }
     }
 
+    text: powerProfileIcon + batteryText
+
     FileView {
         id: profile
 
@@ -25,31 +37,5 @@ StyledText {
         watchChanges: true
 
         onFileChanged: this.reload()
-    }
-
-    text: {
-        var batteryText = " ~ ~~%";
-
-        if (this.battery) {
-            const batteryLevel = Math.round(this.battery.percentage * 100);
-            const charging = this.battery.state === UPowerDeviceState.Charging;
-
-            if (batteryLevel < 10)
-                batteryText = (charging ? " 󰂄 ~" : " 󰂎 ~") + batteryLevel + "%";
-            else if (batteryLevel < 30)
-                batteryText = (charging ? " 󰂄 " : " 󰁻 ") + batteryLevel + "%";
-            else if (batteryLevel < 50)
-                batteryText = (charging ? " 󰂄 " : " 󰁽 ") + batteryLevel + "%";
-            else if (batteryLevel < 70)
-                batteryText = (charging ? " 󰂄 " : " 󰁿 ") + batteryLevel + "%";
-            else if (batteryLevel < 90)
-                batteryText = (charging ? " 󰂄 " : " 󰂁 ") + batteryLevel + "%";
-            else if (batteryLevel < 100)
-                batteryText = (charging ? " 󰂄 " : " 󰁹 ") + batteryLevel + "%";
-            else
-                batteryText = (charging ? " 󰂄 " : " 󰁹 ") + "~C%";
-        }
-
-        return powerProfileIcon + batteryText;
     }
 }

@@ -11,18 +11,11 @@ StyledText {
     property bool wireguardState: false
 
     text: {
-        var networkText = "";
+        const wifiIcon = this.on ? this.connected ? "󰤨 " : "󰤫 " : "󰤮 ";
+        const wireguardIcon = this.wireguardState ? "󱎚" : "󱚰";
+        const networkText = this.on ? this.connected ? this.wireguardState ? "  wg" : " con" : "  on" : " off";
 
-        if (!on)
-            networkText = " off";
-        else if (!connected)
-            networkText = "  on";
-        else if (!wireguardState)
-            networkText = " con";
-        else
-            networkText = "  wg";
-
-        return (on ? connected ? "󰤨" : "󰤫" : "󰤮") + " " + (wireguardState ? "󱎚" : "󱚰") + networkText;
+        return wifiIcon + wireguardIcon + networkText;
     }
 
     Process {
@@ -46,7 +39,7 @@ StyledText {
         interval: 1000
 
         onRunningChanged: {
-            if (!restarting && !this.running) {
+            if (!this.restarting && !this.running) {
                 iwd.running = true;
                 wireguard.running = true;
             }
@@ -56,7 +49,7 @@ StyledText {
     Process {
         id: iwd
 
-        property var output: []
+        property list<string> output: []
 
         command: ["iwctl", "station", "wlan0", "show"]
         running: true
@@ -69,13 +62,7 @@ StyledText {
 
         onExited: {
             network.on = this.output.length !== 1;
-
-            if (network.on) {
-                const [, state] = this.output[5].trim().split(/\s+/);
-                network.connected = state === "connected";
-            } else {
-                network.connected = false;
-            }
+            network.connected = network.on ? this.output[5].trim().split(/\s+/)[1] === "connected" : false;
 
             this.output.length = 0;
         }

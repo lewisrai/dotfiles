@@ -3,6 +3,14 @@ import Quickshell.Io
 import "./Common/"
 
 StyledText {
+    readonly property int maxBrightness: Number(max.text().trim())
+
+    text: {
+        const level = Math.round(Number(brightness.text().trim()) * 100 / this.maxBrightness);
+
+        return level < 10 ? "󰃞 ~" + level + "%" : level < 33 ? "󰃞 " + level + "%" : level < 66 ? "󰃟 " + level + "%" : level < 100 ? "󰃠 " + level + "%" : "󰃠 ~C%";
+    }
+
     FileView {
         id: brightness
 
@@ -13,8 +21,6 @@ StyledText {
 
     FileView {
         id: max
-
-        watchChanges: false
     }
 
     Process {
@@ -28,29 +34,14 @@ StyledText {
         stdout: SplitParser {
             onRead: data => {
                 if (path.set) {
-                    return
+                    return;
                 }
 
-                path.set = true
+                path.set = true;
 
-                brightness.path = "/sys/class/backlight/" + data + "/brightness"
-                max.path = "/sys/class/backlight/" + data + "/max_brightness"
+                brightness.path = "/sys/class/backlight/" + data + "/brightness";
+                max.path = "/sys/class/backlight/" + data + "/max_brightness";
             }
         }
-    }
-
-    text: {
-        const level = Math.round(Number(brightness.text().trim()) * 100 / Number(max.text().trim()));
-
-        if (level < 10)
-            return `󰃞 ~${level}%`;
-        else if (level < 34)
-            return `󰃞 ${level}%`;
-        else if (level < 67)
-            return `󰃟 ${level}%`;
-        else if (level < 100)
-            return `󰃠 ${level}%`;
-        else
-            return `󰃠 ~C%`;
     }
 }

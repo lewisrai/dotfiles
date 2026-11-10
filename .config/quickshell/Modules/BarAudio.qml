@@ -5,32 +5,21 @@ import "./Common/"
 StyledText {
     id: audio
 
+    readonly property string microphoneIcon: this.source?.audio ? this.source.audio.muted ? "󰍭" : "󰍬" : "~"
     readonly property PwNode sink: Pipewire.defaultAudioSink
     readonly property PwNode source: Pipewire.defaultAudioSource
+    readonly property string volumeText: {
+        if (!this.sink?.audio)
+            return " ~ ~~%";
 
-    text: {
-        const microphoneIcon = this.source?.audio ? this.source.audio.muted ? "󰍭" : "󰍬" : "~";
+        const volume = Math.round(this.sink.audio.volume * 100);
+        const icon = this.sink.audio.muted ? " 󰖁 " : volume < 33 ? " 󰕿 " : volume < 66 ? " 󰖀 " : " 󰕾 ";
+        const text = volume < 10 ? "~" + volume + "%" : volume < 100 ? volume + "%" : "~C%";
 
-        var volumeText = " ~ ~~%";
-
-        if (this.sink?.audio) {
-            const volume = Math.round(this.sink.audio.volume * 100);
-            const volumeMute = this.sink.audio.muted;
-
-            if (volume < 10)
-                volumeText = (volumeMute ? " 󰖁 ~" : " 󰕿 ~") + volume + "%";
-            else if (volume < 33)
-                volumeText = (volumeMute ? " 󰖁 " : " 󰕿 ") + volume + "%";
-            else if (volume < 66)
-                volumeText = (volumeMute ? " 󰖁 " : " 󰖀 ") + volume + "%";
-            else if (volume < 100)
-                volumeText = (volumeMute ? " 󰖁 " : " 󰕾 ") + volume + "%";
-            else
-                volumeText = (volumeMute ? " 󰖁 " : " 󰕾 ") + "~C%";
-        }
-
-        return microphoneIcon + volumeText;
+        return icon + text;
     }
+
+    text: this.microphoneIcon + this.volumeText
 
     PwObjectTracker {
         objects: [audio.sink, audio.source]

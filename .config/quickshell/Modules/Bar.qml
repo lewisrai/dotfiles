@@ -19,8 +19,6 @@ PanelWindow {
         x: 28
 
         BarActiveTag {
-            id: abcd
-
             anchors.centerIn: parent
         }
     }
