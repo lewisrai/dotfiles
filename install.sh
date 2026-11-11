@@ -53,6 +53,7 @@ install=(
     'texlive-meta'
     'tree-sitter-cli'
     'ty'
+    'uv'
     'wireguard-tools'
     'xdg-desktop-portal-wlr'
 )
